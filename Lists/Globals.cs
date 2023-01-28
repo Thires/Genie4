@@ -491,17 +491,13 @@ namespace GenieClient.Genie
 
             public void SetDefaultPresets()
             {
-                Add("automapper.heredot" , "Magenta");
-                Add("automapper.lineclimb", "Green, White");
-                Add("automapper.linego", "Blue, White");
+                Add("automapper.panel", "Black, PaleGoldenrod");
                 Add("automapper.line", "Black, White");
                 Add("automapper.linestump", "Cyan, White");
-                Add("automapper.linkroom", "Blue");
+                Add("automapper.lineclimb", "Green, White");
+                Add("automapper.linego", "Blue, White");
                 Add("automapper.node", "White, White");
-                Add("automapper.nodeborder", "White, White");
-                Add("automapper.panel", "Black, PaleGoldenrod");
                 Add("automapper.path", "Green, LightGreen");
-                Add("automapper.selected", "Orange");
                 Add("castbar", "Magenta");
                 Add("concentration", "Navy");
                 Add("creatures", "Cyan");
