@@ -222,20 +222,19 @@ namespace GenieClient.Genie
             }
             
             sText = sText.Replace("@time@", DateTime.Now.ToString("hh:mm:ss tt").Trim());
-            sText = sText.Replace("@time24@", DateTime.Now.ToString("HH:mm:ss tt").Trim());
+            sText = sText.Replace("@time24@", DateTime.Now.ToString("HH:mm:ss").Trim());
+            sText = sText.Replace("@timeyear@", DateTime.Now.ToString("yyyy").Trim());
             sText = sText.Replace("@date@", DateTime.Now.ToString("M/d/yyyy").Trim());
             sText = sText.Replace("@datetime@", DateTime.Now.ToString("M/d/yyyy hh:mm:ss tt").Trim());
-            sText = sText.Replace("@datetime24@", DateTime.Now.ToString("M/d/yyyy HH:mm:ss tt").Trim());
-            sText = sText.Replace("@militarytime@", DateTime.Now.ToString("HHmm").Trim());
+            sText = sText.Replace("@date24time@", DateTime.Now.ToString("M/d/yyyy HH:mm:ss").Trim());
             sText = sText.Replace("@unixtime@", DateTimeOffset.Now.ToUnixTimeSeconds().ToString());
 
-            sText = sText.Replace("@year@", DateTime.Now.ToString("yyyy").Trim());
-            sText = sText.Replace("@month@", DateTime.Now.ToString("mm").Trim());
-            sText = sText.Replace("@dayofmonth@", DateTime.Now.ToString("dd").Trim());
-            sText = sText.Replace("@dayofyear@", DateTime.Now.DayOfYear.ToString().Trim());
-            
-            
-
+            sText = sText.Replace("@scriptdir@", Config.ScriptDir);
+            sText = sText.Replace("@mapdir@", Config.MapDir);
+            sText = sText.Replace("@plugindir@", Config.PluginDir);
+            sText = sText.Replace("@artdir@", Config.ArtDir);
+            sText = sText.Replace("@logdir@", Config.sLogDir);
+            sText = sText.Replace("@sounddir@", Config.SoundDir);
             return sText;
         }
 
@@ -499,20 +498,24 @@ namespace GenieClient.Genie
 
             public void SetDefaultPresets()
             {
-                Add("automapper.panel", "Black, PaleGoldenrod");
-                Add("automapper.line", "Black, White");
-                Add("automapper.linestump", "Cyan, White");
+                Add("automapper.heredot" , "Magenta");
                 Add("automapper.lineclimb", "Green, White");
                 Add("automapper.linego", "Blue, White");
+                Add("automapper.line", "Black, White");
+                Add("automapper.linestump", "Cyan, White");
+                Add("automapper.linkroom", "Blue");
                 Add("automapper.node", "White, White");
+                Add("automapper.nodeborder", "White, White");
+                Add("automapper.panel", "Black, PaleGoldenrod");
                 Add("automapper.path", "Green, LightGreen");
+                Add("automapper.selected", "Orange");
                 Add("castbar", "Magenta");
                 Add("concentration", "Navy");
                 Add("creatures", "Cyan");
                 Add("familiar", "PaleGreen");
                 Add("health", "Maroon");
-                Add("inputuser", "Yellow");
                 Add("inputother", "GreenYellow");
+                Add("inputuser", "Yellow");
                 Add("mana", "Navy");
                 Add("roomdesc", "Silver");
                 Add("roomname", "Yellow,DarkBlue");
@@ -527,8 +530,7 @@ namespace GenieClient.Genie
                 Add("ui.menu.highlight", "LightBlue");
                 Add("ui.window", "Black, #EEEEEE");
                 Add("ui.status", "Black, #EEEEEE");
-                Add("ui.textbox", "Black, White");
-                Add("ui.button", "Black, Silver");
+                Add("ui.textbox", "Black, White");																		  
                 Add("whispers", "Magenta");
             }
 
@@ -840,8 +842,7 @@ namespace GenieClient.Genie
                 Add("roomobjs", "", VariableType.Reserved);
                 Add("roomplayers", "", VariableType.Reserved);
                 Add("roomexits", "", VariableType.Reserved);
-                Add("roomnote", "", VariableType.Reserved);
-
+                Add("roomnote", "", VariableType.Reserved);                
                 Add("concentration", "100", VariableType.Reserved);
                 Add("encumbrance", "0", VariableType.Reserved);
                 Add("health", "100", VariableType.Reserved);
@@ -850,10 +851,16 @@ namespace GenieClient.Genie
                 Add("stamina", "100", VariableType.Reserved);
                 
                 Add("charactername", "", VariableType.Reserved);
-                Add("account", "", VariableType.Reserved);
                 Add("gamename", "", VariableType.Reserved);
                 Add("gamehost", "eaccess.play.net", VariableType.Reserved);
                 Add("gameport", "7910", VariableType.Reserved);
+
+                Add("scriptdir", "@scriptdir@", VariableType.Reserved);
+                Add("mapdir", "@mapdir@", VariableType.Reserved);
+                Add("plugindir", "@plugindir@", VariableType.Reserved);
+                Add("logdir", "@logdir@", VariableType.Reserved);
+                Add("artdir", "@artdir@", VariableType.Reserved);
+                Add("sounddir", "@sounddir@", VariableType.Reserved);
 
                 Add("kneeling", "0", VariableType.Reserved);
                 Add("prone", "0", VariableType.Reserved);
@@ -882,15 +889,11 @@ namespace GenieClient.Genie
                 Add("client", My.MyProject.Application.Info.ProductName.ToString(), VariableType.Reserved);
                 Add("version", My.MyProject.Application.Info.Version.ToString(), VariableType.Reserved);
                 Add("time", "@time@", VariableType.Reserved);
-                Add("time24", "@time24@", VariableType.Reserved);
-                Add("militarytime", "@militarytime@", VariableType.Reserved);
                 Add("date", "@date@", VariableType.Reserved);
-                Add("year", "@year@", VariableType.Reserved);
-                Add("month", "@month@", VariableType.Reserved);
-                Add("dayofmonth", "@dayofmonth@", VariableType.Reserved);
-                Add("dayofyear", "@dayofyear@", VariableType.Reserved);
+                Add("time24", "@time24@", VariableType.Reserved);
+                Add("timeyear", "@timeyear@", VariableType.Reserved);
+                Add("date24time", "@date24time@", VariableType.Reserved);
                 Add("datetime", "@datetime@", VariableType.Reserved);
-                Add("datetime24", "@datetime24@", VariableType.Reserved);
                 Add("unixtime", "@unixtime@", VariableType.Reserved);
                 Add("spelltime", "@spelltime@", VariableType.Reserved);
                 Add("spellpreptime", "@spellpreptime@", VariableType.Reserved);
@@ -905,7 +908,6 @@ namespace GenieClient.Genie
                 Add("zonename", "0", VariableType.Reserved);
                 Add("scriptlist", "none", VariableType.Reserved);
                 Add("repeatregex", @"^\.\.\.wait|^Sorry\, you may only type ahead|^You are still stunned|^You can\'t do that while|^You don\'t seem to be able", VariableType.Reserved);
-
             }
         }
 
@@ -1637,6 +1639,11 @@ namespace GenieClient.Genie
                 }
             }
         }
+
+        /*public class NamesRegExp : Collections.ArrayList
+        {
+
+        }*/
 
         public class GagRegExp : Collections.ArrayList
         {
