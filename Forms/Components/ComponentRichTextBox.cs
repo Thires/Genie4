@@ -140,6 +140,7 @@ namespace GenieClient
         private Font m_MonoFont = new Font("Courier New", 9, FontStyle.Regular);
         private bool m_bTimeStamp = false;
         private bool m_bNameListOnly = false;
+        private bool m_bHideShowScrollbars = false; // Hide/Show scrollbars
         private int m_iMaxBufferSize = 500000;
         private bool m_bIsMainWindow = false;
        
@@ -195,6 +196,19 @@ namespace GenieClient
             }
         }
 
+        public bool HideShowScrollbars // Hide/Show scrollbars
+        {
+            get
+            {
+                return m_bHideShowScrollbars;
+            }
+
+            set
+            {
+                m_bHideShowScrollbars = value;
+            }
+        }
+
         private string GetTimeString(string sText)
         {
             if (m_bTimeStamp == true)
@@ -203,11 +217,11 @@ namespace GenieClient
                 {
                     if (sText.StartsWith(" "))
                     {
-                        return "[" + Strings.FormatDateTime(DateAndTime.Now, DateFormat.ShortTime) + "]";
+                        return "[" + Strings.FormatDateTime(DateAndTime.Now, DateFormat.LongTime) + "]";
                     }
                     else
                     {
-                        return "[" + Strings.FormatDateTime(DateAndTime.Now, DateFormat.ShortTime) + "] ";
+                        return "[" + Strings.FormatDateTime(DateAndTime.Now, DateFormat.LongTime) + "] ";
                     }
                 }
             }
@@ -914,6 +928,34 @@ namespace GenieClient
             e.Handled = true;
         }
 
+        // Hide/Show scrollbars
+        [DllImport("User32.dll", SetLastError = true, CharSet = CharSet.Auto)]
+        public static extern int SendMessage(IntPtr hWnd, uint msg, int wParam, IntPtr lParam);
+
+        private const uint WM_VSCROLL = 0x115;
+        private const uint SB_LINEUP = 0;
+        private const uint SB_LINEDOWN = 1;
+
+        public static uint MakeWord(byte low, byte high)
+        {
+            return ((uint)high << 8) | low;
+        }
+
+        public void ComponentRichTextBox_MouseWheel(object sender, MouseEventArgs e)
+        {
+            int bLines = e.Delta * SystemInformation.MouseWheelScrollLines / 120;
+            if (bLines > 0)
+            {
+                for (int i = 0; i < bLines; i++)
+                    SendMessage(Handle, WM_VSCROLL, (int)MakeWord((byte)SB_LINEUP, 0), IntPtr.Zero);
+            }
+            else
+            {
+                for (int i = bLines; i < 0; i++)
+                    SendMessage(Handle, WM_VSCROLL, (int)MakeWord((byte)SB_LINEDOWN, 0), IntPtr.Zero);
+            }
+        }
+
         private bool m_bMouseDown = false;
 
         public void ComponentRichTextBox_MouseDown(object sender, MouseEventArgs e)
@@ -1008,9 +1050,13 @@ namespace GenieClient
             Marshal.FreeCoTaskMem(lpar);
         }
 
-        public void AddScrollBar()
+        /*public void AddScrollBar()
         {
-            ScrollBars = RichTextBoxScrollBars.ForcedVertical;
+            if (HideShowScrollbars)
+                ScrollBars = RichTextBoxScrollBars.ForcedVertical;
+            else
+                ScrollBars = RichTextBoxScrollBars.None;
+            Invalidate();
         }
 
         private void VScrollEvent(object sender, EventArgs e)
@@ -1023,7 +1069,7 @@ namespace GenieClient
         public void SetScrollBars()
         {
 
-            if (Win32Utility.GetFirstLineVisible((IntPtr)Handle.ToInt32()) > 0)
+            if (HideShowScrollbars)
             {
                 ScrollBars = RichTextBoxScrollBars.ForcedVertical;
             }
@@ -1032,6 +1078,6 @@ namespace GenieClient
                 ScrollBars = RichTextBoxScrollBars.None;
                 VScroll += VScrollEvent;
             }
-        }
+        }*/
     }
 }
