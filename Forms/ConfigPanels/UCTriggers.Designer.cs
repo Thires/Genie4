@@ -31,292 +31,275 @@ namespace GenieClient
         [DebuggerStepThrough()]
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
+            components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(UCTriggers));
-            this._ListViewBase = new System.Windows.Forms.ListView();
-            this._ContextMenuStripBase = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this._AddToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this._RemoveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this._ToolStripMenu = new System.Windows.Forms.ToolStrip();
-            this._ToolStripButtonRefresh = new System.Windows.Forms.ToolStripButton();
-            this._ToolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
-            this._ToolStripButtonAdd = new System.Windows.Forms.ToolStripButton();
-            this._ToolStripButtonRemove = new System.Windows.Forms.ToolStripButton();
-            this._ToolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
-            this._ToolStripButtonLoad = new System.Windows.Forms.ToolStripButton();
-            this._ToolStripButtonSave = new System.Windows.Forms.ToolStripButton();
-            this._TextBoxAction = new System.Windows.Forms.TextBox();
-            this._ButtonApply = new System.Windows.Forms.Button();
-            this._GroupBoxBase = new System.Windows.Forms.GroupBox();
-            this._ButtonEdit = new System.Windows.Forms.Button();
-            this._LabelClass = new System.Windows.Forms.Label();
-            this._ComboBoxClass = new System.Windows.Forms.ComboBox();
-            this._CheckBoxEval = new System.Windows.Forms.CheckBox();
-            this._LabelAction = new System.Windows.Forms.Label();
-            this._TextBoxTrigger = new System.Windows.Forms.TextBox();
-            this._LabelTrigger = new System.Windows.Forms.Label();
-            this._FontDialogPicker = new System.Windows.Forms.FontDialog();
-            this._ContextMenuStripBase.SuspendLayout();
-            this._ToolStripMenu.SuspendLayout();
-            this._GroupBoxBase.SuspendLayout();
-            this.SuspendLayout();
+            _ListViewBase = new ListView();
+            _ContextMenuStripBase = new ContextMenuStrip(components);
+            _AddToolStripMenuItem = new ToolStripMenuItem();
+            _RemoveToolStripMenuItem = new ToolStripMenuItem();
+            _ToolStripMenu = new ToolStrip();
+            _ToolStripButtonRefresh = new ToolStripButton();
+            _ToolStripSeparator2 = new ToolStripSeparator();
+            _ToolStripButtonAdd = new ToolStripButton();
+            _ToolStripButtonRemove = new ToolStripButton();
+            _ToolStripSeparator1 = new ToolStripSeparator();
+            _ToolStripButtonLoad = new ToolStripButton();
+            _ToolStripButtonSave = new ToolStripButton();
+            _TextBoxAction = new TextBox();
+            _ButtonApply = new Button();
+            _GroupBoxBase = new GroupBox();
+            _ButtonEdit = new Button();
+            _LabelClass = new Label();
+            _ComboBoxClass = new ComboBox();
+            _CheckBoxEval = new CheckBox();
+            _LabelAction = new Label();
+            _TextBoxTrigger = new TextBox();
+            _LabelTrigger = new Label();
+            _FontDialogPicker = new FontDialog();
+            _ContextMenuStripBase.SuspendLayout();
+            _ToolStripMenu.SuspendLayout();
+            _GroupBoxBase.SuspendLayout();
+            SuspendLayout();
             // 
             // _ListViewBase
             // 
-            this._ListViewBase.BackColor = System.Drawing.Color.Black;
-            this._ListViewBase.ContextMenuStrip = this._ContextMenuStripBase;
-            this._ListViewBase.Dock = System.Windows.Forms.DockStyle.Fill;
-            this._ListViewBase.ForeColor = System.Drawing.Color.White;
-            this._ListViewBase.FullRowSelect = true;
-            this._ListViewBase.Location = new System.Drawing.Point(0, 25);
-            this._ListViewBase.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this._ListViewBase.Name = "_ListViewBase";
-            this._ListViewBase.ShowGroups = false;
-            this._ListViewBase.Size = new System.Drawing.Size(814, 283);
-            this._ListViewBase.Sorting = System.Windows.Forms.SortOrder.Ascending;
-            this._ListViewBase.TabIndex = 3;
-            this._ListViewBase.UseCompatibleStateImageBehavior = false;
-            this._ListViewBase.View = System.Windows.Forms.View.Details;
-            this._ListViewBase.ColumnClick += new System.Windows.Forms.ColumnClickEventHandler(this.ListViewBase_SortColumnClick);
-            this._ListViewBase.SelectedIndexChanged += new System.EventHandler(this.ListViewBase_SelectedIndexChanged);
-            this._ListViewBase.KeyUp += new System.Windows.Forms.KeyEventHandler(this.ListViewBase_KeyUp);
-            this._ListViewBase.MouseUp += new System.Windows.Forms.MouseEventHandler(this.ListViewBase_MouseUp);
+            _ListViewBase.BackColor = Color.Black;
+            _ListViewBase.ContextMenuStrip = _ContextMenuStripBase;
+            _ListViewBase.Dock = DockStyle.Fill;
+            _ListViewBase.ForeColor = Color.White;
+            _ListViewBase.FullRowSelect = true;
+            _ListViewBase.Location = new Point(0, 25);
+            _ListViewBase.Margin = new Padding(4, 3, 4, 3);
+            _ListViewBase.Name = "_ListViewBase";
+            _ListViewBase.ShowGroups = false;
+            _ListViewBase.Size = new Size(814, 283);
+            _ListViewBase.Sorting = SortOrder.Ascending;
+            _ListViewBase.TabIndex = 3;
+            _ListViewBase.UseCompatibleStateImageBehavior = false;
+            _ListViewBase.View = View.Details;
+            _ListViewBase.ColumnClick += ListViewBase_SortColumnClick;
+            _ListViewBase.SelectedIndexChanged += ListViewBase_SelectedIndexChanged;
+            _ListViewBase.KeyUp += ListViewBase_KeyUp;
+            _ListViewBase.MouseUp += ListViewBase_MouseUp;
             // 
             // _ContextMenuStripBase
             // 
-            this._ContextMenuStripBase.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this._AddToolStripMenuItem,
-            this._RemoveToolStripMenuItem});
-            this._ContextMenuStripBase.Name = "ContextMenuStripBase";
-            this._ContextMenuStripBase.Size = new System.Drawing.Size(118, 48);
+            _ContextMenuStripBase.Items.AddRange(new ToolStripItem[] { _AddToolStripMenuItem, _RemoveToolStripMenuItem });
+            _ContextMenuStripBase.Name = "ContextMenuStripBase";
+            _ContextMenuStripBase.Size = new Size(118, 48);
             // 
             // _AddToolStripMenuItem
             // 
-            this._AddToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("_AddToolStripMenuItem.Image")));
-            this._AddToolStripMenuItem.Name = "_AddToolStripMenuItem";
-            this._AddToolStripMenuItem.Size = new System.Drawing.Size(117, 22);
-            this._AddToolStripMenuItem.Text = "Add";
-            this._AddToolStripMenuItem.Click += new System.EventHandler(this.AddToolStripMenuItem_Click);
+            _AddToolStripMenuItem.Name = "_AddToolStripMenuItem";
+            _AddToolStripMenuItem.Size = new Size(117, 22);
+            _AddToolStripMenuItem.Text = "Add";
+            _AddToolStripMenuItem.Click += AddToolStripMenuItem_Click;
             // 
             // _RemoveToolStripMenuItem
             // 
-            this._RemoveToolStripMenuItem.Enabled = false;
-            this._RemoveToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("_RemoveToolStripMenuItem.Image")));
-            this._RemoveToolStripMenuItem.Name = "_RemoveToolStripMenuItem";
-            this._RemoveToolStripMenuItem.Size = new System.Drawing.Size(117, 22);
-            this._RemoveToolStripMenuItem.Text = "Remove";
-            this._RemoveToolStripMenuItem.Click += new System.EventHandler(this.RemoveToolStripMenuItem_Click);
+            _RemoveToolStripMenuItem.Enabled = false;
+            _RemoveToolStripMenuItem.Name = "_RemoveToolStripMenuItem";
+            _RemoveToolStripMenuItem.Size = new Size(117, 22);
+            _RemoveToolStripMenuItem.Text = "Remove";
+            _RemoveToolStripMenuItem.Click += RemoveToolStripMenuItem_Click;
             // 
             // _ToolStripMenu
             // 
-            this._ToolStripMenu.AllowMerge = false;
-            this._ToolStripMenu.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
-            this._ToolStripMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this._ToolStripButtonRefresh,
-            this._ToolStripSeparator2,
-            this._ToolStripButtonAdd,
-            this._ToolStripButtonRemove,
-            this._ToolStripSeparator1,
-            this._ToolStripButtonLoad,
-            this._ToolStripButtonSave});
-            this._ToolStripMenu.Location = new System.Drawing.Point(0, 0);
-            this._ToolStripMenu.Name = "_ToolStripMenu";
-            this._ToolStripMenu.Size = new System.Drawing.Size(814, 25);
-            this._ToolStripMenu.TabIndex = 5;
+            _ToolStripMenu.AllowMerge = false;
+            _ToolStripMenu.GripStyle = ToolStripGripStyle.Hidden;
+            _ToolStripMenu.Items.AddRange(new ToolStripItem[] { _ToolStripButtonRefresh, _ToolStripSeparator2, _ToolStripButtonAdd, _ToolStripButtonRemove, _ToolStripSeparator1, _ToolStripButtonLoad, _ToolStripButtonSave });
+            _ToolStripMenu.Location = new Point(0, 0);
+            _ToolStripMenu.Name = "_ToolStripMenu";
+            _ToolStripMenu.Size = new Size(814, 25);
+            _ToolStripMenu.TabIndex = 5;
             // 
             // _ToolStripButtonRefresh
             // 
-            this._ToolStripButtonRefresh.Image = ((System.Drawing.Image)(resources.GetObject("_ToolStripButtonRefresh.Image")));
-            this._ToolStripButtonRefresh.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this._ToolStripButtonRefresh.Name = "_ToolStripButtonRefresh";
-            this._ToolStripButtonRefresh.Size = new System.Drawing.Size(66, 22);
-            this._ToolStripButtonRefresh.Text = "Refresh";
-            this._ToolStripButtonRefresh.Click += new System.EventHandler(this.ToolStripButtonRefresh_Click);
+            _ToolStripButtonRefresh.ImageTransparentColor = Color.Magenta;
+            _ToolStripButtonRefresh.Name = "_ToolStripButtonRefresh";
+            _ToolStripButtonRefresh.Size = new Size(50, 22);
+            _ToolStripButtonRefresh.Text = "Refresh";
+            _ToolStripButtonRefresh.Click += ToolStripButtonRefresh_Click;
             // 
             // _ToolStripSeparator2
             // 
-            this._ToolStripSeparator2.Name = "_ToolStripSeparator2";
-            this._ToolStripSeparator2.Size = new System.Drawing.Size(6, 25);
+            _ToolStripSeparator2.Name = "_ToolStripSeparator2";
+            _ToolStripSeparator2.Size = new Size(6, 25);
             // 
             // _ToolStripButtonAdd
             // 
-            this._ToolStripButtonAdd.Image = ((System.Drawing.Image)(resources.GetObject("_ToolStripButtonAdd.Image")));
-            this._ToolStripButtonAdd.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this._ToolStripButtonAdd.Name = "_ToolStripButtonAdd";
-            this._ToolStripButtonAdd.Size = new System.Drawing.Size(49, 22);
-            this._ToolStripButtonAdd.Text = "Add";
-            this._ToolStripButtonAdd.Click += new System.EventHandler(this.ToolStripButtonAdd_Click);
+            _ToolStripButtonAdd.ImageTransparentColor = Color.Magenta;
+            _ToolStripButtonAdd.Name = "_ToolStripButtonAdd";
+            _ToolStripButtonAdd.Size = new Size(33, 22);
+            _ToolStripButtonAdd.Text = "Add";
+            _ToolStripButtonAdd.Click += ToolStripButtonAdd_Click;
             // 
             // _ToolStripButtonRemove
             // 
-            this._ToolStripButtonRemove.Enabled = false;
-            this._ToolStripButtonRemove.Image = ((System.Drawing.Image)(resources.GetObject("_ToolStripButtonRemove.Image")));
-            this._ToolStripButtonRemove.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this._ToolStripButtonRemove.Name = "_ToolStripButtonRemove";
-            this._ToolStripButtonRemove.Size = new System.Drawing.Size(70, 22);
-            this._ToolStripButtonRemove.Text = "Remove";
-            this._ToolStripButtonRemove.Click += new System.EventHandler(this.ToolStripButtonRemove_Click);
+            _ToolStripButtonRemove.Enabled = false;
+            _ToolStripButtonRemove.ImageTransparentColor = Color.Magenta;
+            _ToolStripButtonRemove.Name = "_ToolStripButtonRemove";
+            _ToolStripButtonRemove.Size = new Size(54, 22);
+            _ToolStripButtonRemove.Text = "Remove";
+            _ToolStripButtonRemove.Click += ToolStripButtonRemove_Click;
             // 
             // _ToolStripSeparator1
             // 
-            this._ToolStripSeparator1.Name = "_ToolStripSeparator1";
-            this._ToolStripSeparator1.Size = new System.Drawing.Size(6, 25);
+            _ToolStripSeparator1.Name = "_ToolStripSeparator1";
+            _ToolStripSeparator1.Size = new Size(6, 25);
             // 
             // _ToolStripButtonLoad
             // 
-            this._ToolStripButtonLoad.Image = ((System.Drawing.Image)(resources.GetObject("_ToolStripButtonLoad.Image")));
-            this._ToolStripButtonLoad.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this._ToolStripButtonLoad.Name = "_ToolStripButtonLoad";
-            this._ToolStripButtonLoad.Size = new System.Drawing.Size(53, 22);
-            this._ToolStripButtonLoad.Text = "Load";
-            this._ToolStripButtonLoad.Click += new System.EventHandler(this.ToolStripButtonLoad_Click);
+            _ToolStripButtonLoad.ImageTransparentColor = Color.Magenta;
+            _ToolStripButtonLoad.Name = "_ToolStripButtonLoad";
+            _ToolStripButtonLoad.Size = new Size(37, 22);
+            _ToolStripButtonLoad.Text = "Load";
+            _ToolStripButtonLoad.Click += ToolStripButtonLoad_Click;
             // 
             // _ToolStripButtonSave
             // 
-            this._ToolStripButtonSave.Image = ((System.Drawing.Image)(resources.GetObject("_ToolStripButtonSave.Image")));
-            this._ToolStripButtonSave.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this._ToolStripButtonSave.Name = "_ToolStripButtonSave";
-            this._ToolStripButtonSave.Size = new System.Drawing.Size(51, 22);
-            this._ToolStripButtonSave.Text = "Save";
-            this._ToolStripButtonSave.Click += new System.EventHandler(this.ToolStripButtonSave_Click);
+            _ToolStripButtonSave.ImageTransparentColor = Color.Magenta;
+            _ToolStripButtonSave.Name = "_ToolStripButtonSave";
+            _ToolStripButtonSave.Size = new Size(35, 22);
+            _ToolStripButtonSave.Text = "Save";
+            _ToolStripButtonSave.Click += ToolStripButtonSave_Click;
             // 
             // _TextBoxAction
             // 
-            this._TextBoxAction.Location = new System.Drawing.Point(7, 82);
-            this._TextBoxAction.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this._TextBoxAction.Name = "_TextBoxAction";
-            this._TextBoxAction.Size = new System.Drawing.Size(462, 23);
-            this._TextBoxAction.TabIndex = 1;
-            this._TextBoxAction.TextChanged += new System.EventHandler(this.TextBox_TextChanged);
+            _TextBoxAction.Location = new Point(7, 82);
+            _TextBoxAction.Margin = new Padding(4, 3, 4, 3);
+            _TextBoxAction.Name = "_TextBoxAction";
+            _TextBoxAction.Size = new Size(462, 23);
+            _TextBoxAction.TabIndex = 1;
+            _TextBoxAction.TextChanged += TextBox_TextChanged;
             // 
             // _ButtonApply
             // 
-            this._ButtonApply.Location = new System.Drawing.Point(7, 158);
-            this._ButtonApply.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this._ButtonApply.Name = "_ButtonApply";
-            this._ButtonApply.Size = new System.Drawing.Size(88, 27);
-            this._ButtonApply.TabIndex = 3;
-            this._ButtonApply.Text = "Apply";
-            this._ButtonApply.UseVisualStyleBackColor = true;
-            this._ButtonApply.Click += new System.EventHandler(this.ButtonApply_Click);
+            _ButtonApply.Location = new Point(7, 158);
+            _ButtonApply.Margin = new Padding(4, 3, 4, 3);
+            _ButtonApply.Name = "_ButtonApply";
+            _ButtonApply.Size = new Size(88, 27);
+            _ButtonApply.TabIndex = 3;
+            _ButtonApply.Text = "Apply";
+            _ButtonApply.UseVisualStyleBackColor = true;
+            _ButtonApply.Click += ButtonApply_Click;
             // 
             // _GroupBoxBase
             // 
-            this._GroupBoxBase.AutoSize = true;
-            this._GroupBoxBase.Controls.Add(this._ButtonEdit);
-            this._GroupBoxBase.Controls.Add(this._LabelClass);
-            this._GroupBoxBase.Controls.Add(this._ComboBoxClass);
-            this._GroupBoxBase.Controls.Add(this._CheckBoxEval);
-            this._GroupBoxBase.Controls.Add(this._LabelAction);
-            this._GroupBoxBase.Controls.Add(this._TextBoxTrigger);
-            this._GroupBoxBase.Controls.Add(this._LabelTrigger);
-            this._GroupBoxBase.Controls.Add(this._ButtonApply);
-            this._GroupBoxBase.Controls.Add(this._TextBoxAction);
-            this._GroupBoxBase.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this._GroupBoxBase.Enabled = false;
-            this._GroupBoxBase.Location = new System.Drawing.Point(0, 308);
-            this._GroupBoxBase.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this._GroupBoxBase.Name = "_GroupBoxBase";
-            this._GroupBoxBase.Padding = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this._GroupBoxBase.Size = new System.Drawing.Size(814, 207);
-            this._GroupBoxBase.TabIndex = 4;
-            this._GroupBoxBase.TabStop = false;
+            _GroupBoxBase.AutoSize = true;
+            _GroupBoxBase.Controls.Add(_ButtonEdit);
+            _GroupBoxBase.Controls.Add(_LabelClass);
+            _GroupBoxBase.Controls.Add(_ComboBoxClass);
+            _GroupBoxBase.Controls.Add(_CheckBoxEval);
+            _GroupBoxBase.Controls.Add(_LabelAction);
+            _GroupBoxBase.Controls.Add(_TextBoxTrigger);
+            _GroupBoxBase.Controls.Add(_LabelTrigger);
+            _GroupBoxBase.Controls.Add(_ButtonApply);
+            _GroupBoxBase.Controls.Add(_TextBoxAction);
+            _GroupBoxBase.Dock = DockStyle.Bottom;
+            _GroupBoxBase.Enabled = false;
+            _GroupBoxBase.Location = new Point(0, 308);
+            _GroupBoxBase.Margin = new Padding(4, 3, 4, 3);
+            _GroupBoxBase.Name = "_GroupBoxBase";
+            _GroupBoxBase.Padding = new Padding(4, 3, 4, 3);
+            _GroupBoxBase.Size = new Size(814, 207);
+            _GroupBoxBase.TabIndex = 4;
+            _GroupBoxBase.TabStop = false;
             // 
             // _ButtonEdit
             // 
-            this._ButtonEdit.Image = ((System.Drawing.Image)(resources.GetObject("_ButtonEdit.Image")));
-            this._ButtonEdit.Location = new System.Drawing.Point(477, 81);
-            this._ButtonEdit.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this._ButtonEdit.Name = "_ButtonEdit";
-            this._ButtonEdit.Size = new System.Drawing.Size(27, 27);
-            this._ButtonEdit.TabIndex = 16;
-            this._ButtonEdit.UseVisualStyleBackColor = true;
-            this._ButtonEdit.Click += new System.EventHandler(this.ButtonEdit_Click);
+            _ButtonEdit.Image = (Image)resources.GetObject("_ButtonEdit.Image");
+            _ButtonEdit.Location = new Point(477, 81);
+            _ButtonEdit.Margin = new Padding(4, 3, 4, 3);
+            _ButtonEdit.Name = "_ButtonEdit";
+            _ButtonEdit.Size = new Size(27, 27);
+            _ButtonEdit.TabIndex = 16;
+            _ButtonEdit.UseVisualStyleBackColor = true;
+            _ButtonEdit.Click += ButtonEdit_Click;
             // 
             // _LabelClass
             // 
-            this._LabelClass.AutoSize = true;
-            this._LabelClass.Location = new System.Drawing.Point(4, 108);
-            this._LabelClass.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this._LabelClass.Name = "_LabelClass";
-            this._LabelClass.Size = new System.Drawing.Size(34, 15);
-            this._LabelClass.TabIndex = 15;
-            this._LabelClass.Text = "Class";
+            _LabelClass.AutoSize = true;
+            _LabelClass.Location = new Point(4, 108);
+            _LabelClass.Margin = new Padding(4, 0, 4, 0);
+            _LabelClass.Name = "_LabelClass";
+            _LabelClass.Size = new Size(34, 15);
+            _LabelClass.TabIndex = 15;
+            _LabelClass.Text = "Class";
             // 
             // _ComboBoxClass
             // 
-            this._ComboBoxClass.FormattingEnabled = true;
-            this._ComboBoxClass.Location = new System.Drawing.Point(7, 127);
-            this._ComboBoxClass.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this._ComboBoxClass.Name = "_ComboBoxClass";
-            this._ComboBoxClass.Size = new System.Drawing.Size(149, 23);
-            this._ComboBoxClass.TabIndex = 14;
-            this._ComboBoxClass.Text = "(default)";
+            _ComboBoxClass.FormattingEnabled = true;
+            _ComboBoxClass.Location = new Point(7, 127);
+            _ComboBoxClass.Margin = new Padding(4, 3, 4, 3);
+            _ComboBoxClass.Name = "_ComboBoxClass";
+            _ComboBoxClass.Size = new Size(149, 23);
+            _ComboBoxClass.TabIndex = 14;
+            _ComboBoxClass.Text = "(default)";
             // 
             // _CheckBoxEval
             // 
-            this._CheckBoxEval.AutoSize = true;
-            this._CheckBoxEval.Location = new System.Drawing.Point(449, 39);
-            this._CheckBoxEval.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this._CheckBoxEval.Name = "_CheckBoxEval";
-            this._CheckBoxEval.Size = new System.Drawing.Size(47, 19);
-            this._CheckBoxEval.TabIndex = 11;
-            this._CheckBoxEval.Text = "Eval";
-            this._CheckBoxEval.UseVisualStyleBackColor = true;
+            _CheckBoxEval.AutoSize = true;
+            _CheckBoxEval.Location = new Point(449, 39);
+            _CheckBoxEval.Margin = new Padding(4, 3, 4, 3);
+            _CheckBoxEval.Name = "_CheckBoxEval";
+            _CheckBoxEval.Size = new Size(47, 19);
+            _CheckBoxEval.TabIndex = 11;
+            _CheckBoxEval.Text = "Eval";
+            _CheckBoxEval.UseVisualStyleBackColor = true;
             // 
             // _LabelAction
             // 
-            this._LabelAction.AutoSize = true;
-            this._LabelAction.Location = new System.Drawing.Point(4, 63);
-            this._LabelAction.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this._LabelAction.Name = "_LabelAction";
-            this._LabelAction.Size = new System.Drawing.Size(42, 15);
-            this._LabelAction.TabIndex = 10;
-            this._LabelAction.Text = "Action";
+            _LabelAction.AutoSize = true;
+            _LabelAction.Location = new Point(4, 63);
+            _LabelAction.Margin = new Padding(4, 0, 4, 0);
+            _LabelAction.Name = "_LabelAction";
+            _LabelAction.Size = new Size(42, 15);
+            _LabelAction.TabIndex = 10;
+            _LabelAction.Text = "Action";
             // 
             // _TextBoxTrigger
             // 
-            this._TextBoxTrigger.Location = new System.Drawing.Point(7, 37);
-            this._TextBoxTrigger.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this._TextBoxTrigger.Name = "_TextBoxTrigger";
-            this._TextBoxTrigger.Size = new System.Drawing.Size(434, 23);
-            this._TextBoxTrigger.TabIndex = 1;
-            this._TextBoxTrigger.TextChanged += new System.EventHandler(this.TextBox_TextChanged);
+            _TextBoxTrigger.Location = new Point(7, 37);
+            _TextBoxTrigger.Margin = new Padding(4, 3, 4, 3);
+            _TextBoxTrigger.Name = "_TextBoxTrigger";
+            _TextBoxTrigger.Size = new Size(434, 23);
+            _TextBoxTrigger.TabIndex = 1;
+            _TextBoxTrigger.TextChanged += TextBox_TextChanged;
             // 
             // _LabelTrigger
             // 
-            this._LabelTrigger.AutoSize = true;
-            this._LabelTrigger.Location = new System.Drawing.Point(4, 18);
-            this._LabelTrigger.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this._LabelTrigger.Name = "_LabelTrigger";
-            this._LabelTrigger.Size = new System.Drawing.Size(153, 15);
-            this._LabelTrigger.TabIndex = 8;
-            this._LabelTrigger.Text = "Trigger (Regular Expression)";
+            _LabelTrigger.AutoSize = true;
+            _LabelTrigger.Location = new Point(4, 18);
+            _LabelTrigger.Margin = new Padding(4, 0, 4, 0);
+            _LabelTrigger.Name = "_LabelTrigger";
+            _LabelTrigger.Size = new Size(153, 15);
+            _LabelTrigger.TabIndex = 8;
+            _LabelTrigger.Text = "Trigger (Regular Expression)";
             // 
             // _FontDialogPicker
             // 
-            this._FontDialogPicker.FontMustExist = true;
-            this._FontDialogPicker.ShowEffects = false;
+            _FontDialogPicker.FontMustExist = true;
+            _FontDialogPicker.ShowEffects = false;
             // 
             // UCTriggers
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this._ListViewBase);
-            this.Controls.Add(this._ToolStripMenu);
-            this.Controls.Add(this._GroupBoxBase);
-            this.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.Name = "UCTriggers";
-            this.Size = new System.Drawing.Size(814, 515);
-            this.Load += new System.EventHandler(this.UCWindows_Load);
-            this._ContextMenuStripBase.ResumeLayout(false);
-            this._ToolStripMenu.ResumeLayout(false);
-            this._ToolStripMenu.PerformLayout();
-            this._GroupBoxBase.ResumeLayout(false);
-            this._GroupBoxBase.PerformLayout();
-            this.ResumeLayout(false);
-            this.PerformLayout();
-
+            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleMode = AutoScaleMode.Font;
+            Controls.Add(_ListViewBase);
+            Controls.Add(_ToolStripMenu);
+            Controls.Add(_GroupBoxBase);
+            Margin = new Padding(4, 3, 4, 3);
+            Name = "UCTriggers";
+            Size = new Size(814, 515);
+            Load += UCWindows_Load;
+            _ContextMenuStripBase.ResumeLayout(false);
+            _ToolStripMenu.ResumeLayout(false);
+            _ToolStripMenu.PerformLayout();
+            _GroupBoxBase.ResumeLayout(false);
+            _GroupBoxBase.PerformLayout();
+            ResumeLayout(false);
+            PerformLayout();
         }
 
         private ListView _ListViewBase;

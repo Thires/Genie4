@@ -32,452 +32,435 @@ namespace GenieClient
         [DebuggerStepThrough()]
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
+            components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(UCHighlightStrings));
-            this._ListViewBase = new System.Windows.Forms.ListView();
-            this._ContextMenuStripBase = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this._AddToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this._RemoveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this._GroupBoxBase = new System.Windows.Forms.GroupBox();
-            this._ButtonPlay = new System.Windows.Forms.Button();
-            this._ButtonBrowse = new System.Windows.Forms.Button();
-            this._TextBoxSound = new System.Windows.Forms.TextBox();
-            this._LabelSound = new System.Windows.Forms.Label();
-            this._LabelClass = new System.Windows.Forms.Label();
-            this._ComboBoxClass = new System.Windows.Forms.ComboBox();
-            this._CheckBoxAutoApply = new System.Windows.Forms.CheckBox();
-            this._RadioButtonRegExp = new System.Windows.Forms.RadioButton();
-            this._RadioButtonBeginsWith = new System.Windows.Forms.RadioButton();
-            this._CheckBoxCaseSensitive = new System.Windows.Forms.CheckBox();
-            this._RadioButtonLine = new System.Windows.Forms.RadioButton();
-            this._RadioButtonString = new System.Windows.Forms.RadioButton();
-            this._ButtonColorBg = new System.Windows.Forms.Button();
-            this._LabelExampleColor = new System.Windows.Forms.Label();
-            this._ButtonColorFg = new System.Windows.Forms.Button();
-            this._LabelColor = new System.Windows.Forms.Label();
-            this._TextBoxHighlight = new System.Windows.Forms.TextBox();
-            this._LabelHighlight = new System.Windows.Forms.Label();
-            this._ButtonApply = new System.Windows.Forms.Button();
-            this._TextBoxColor = new System.Windows.Forms.TextBox();
-            this._ColorDialogPicker = new System.Windows.Forms.ColorDialog();
-            this._ToolStripMenu = new System.Windows.Forms.ToolStrip();
-            this._ToolStripButtonRefresh = new System.Windows.Forms.ToolStripButton();
-            this._ToolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
-            this._ToolStripButtonAdd = new System.Windows.Forms.ToolStripButton();
-            this._ToolStripButtonRemove = new System.Windows.Forms.ToolStripButton();
-            this._ToolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
-            this._ToolStripButtonLoad = new System.Windows.Forms.ToolStripButton();
-            this._ToolStripButtonSave = new System.Windows.Forms.ToolStripButton();
-            this._OpenFileDialogSound = new System.Windows.Forms.OpenFileDialog();
-            this._ContextMenuStripBase.SuspendLayout();
-            this._GroupBoxBase.SuspendLayout();
-            this._ToolStripMenu.SuspendLayout();
-            this.SuspendLayout();
+            _ListViewBase = new ListView();
+            _ContextMenuStripBase = new ContextMenuStrip(components);
+            _AddToolStripMenuItem = new ToolStripMenuItem();
+            _RemoveToolStripMenuItem = new ToolStripMenuItem();
+            _GroupBoxBase = new GroupBox();
+            _ButtonPlay = new Button();
+            _ButtonBrowse = new Button();
+            _TextBoxSound = new TextBox();
+            _LabelSound = new Label();
+            _LabelClass = new Label();
+            _ComboBoxClass = new ComboBox();
+            _CheckBoxAutoApply = new CheckBox();
+            _RadioButtonRegExp = new RadioButton();
+            _RadioButtonBeginsWith = new RadioButton();
+            _CheckBoxCaseSensitive = new CheckBox();
+            _RadioButtonLine = new RadioButton();
+            _RadioButtonString = new RadioButton();
+            _ButtonColorBg = new Button();
+            _LabelExampleColor = new Label();
+            _ButtonColorFg = new Button();
+            _LabelColor = new Label();
+            _TextBoxHighlight = new TextBox();
+            _LabelHighlight = new Label();
+            _ButtonApply = new Button();
+            _TextBoxColor = new TextBox();
+            _ColorDialogPicker = new ColorDialog();
+            _ToolStripMenu = new ToolStrip();
+            _ToolStripButtonRefresh = new ToolStripButton();
+            _ToolStripSeparator2 = new ToolStripSeparator();
+            _ToolStripButtonAdd = new ToolStripButton();
+            _ToolStripButtonRemove = new ToolStripButton();
+            _ToolStripSeparator1 = new ToolStripSeparator();
+            _ToolStripButtonLoad = new ToolStripButton();
+            _ToolStripButtonSave = new ToolStripButton();
+            _OpenFileDialogSound = new OpenFileDialog();
+            _ContextMenuStripBase.SuspendLayout();
+            _GroupBoxBase.SuspendLayout();
+            _ToolStripMenu.SuspendLayout();
+            SuspendLayout();
             // 
             // _ListViewBase
             // 
-            this._ListViewBase.BackColor = System.Drawing.Color.Black;
-            this._ListViewBase.ContextMenuStrip = this._ContextMenuStripBase;
-            this._ListViewBase.Dock = System.Windows.Forms.DockStyle.Fill;
-            this._ListViewBase.ForeColor = System.Drawing.Color.White;
-            this._ListViewBase.FullRowSelect = true;
-            this._ListViewBase.Location = new System.Drawing.Point(0, 25);
-            this._ListViewBase.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this._ListViewBase.Name = "_ListViewBase";
-            this._ListViewBase.ShowGroups = false;
-            this._ListViewBase.Size = new System.Drawing.Size(814, 255);
-            this._ListViewBase.Sorting = System.Windows.Forms.SortOrder.Ascending;
-            this._ListViewBase.TabIndex = 0;
-            this._ListViewBase.UseCompatibleStateImageBehavior = false;
-            this._ListViewBase.View = System.Windows.Forms.View.Details;
-            this._ListViewBase.ColumnClick += new System.Windows.Forms.ColumnClickEventHandler(this.ListViewBase_SortColumnClick);
-            this._ListViewBase.SelectedIndexChanged += new System.EventHandler(this.ListViewBase_SelectedIndexChanged);
-            this._ListViewBase.KeyUp += new System.Windows.Forms.KeyEventHandler(this.ListViewBase_KeyUp);
-            this._ListViewBase.MouseUp += new System.Windows.Forms.MouseEventHandler(this.ListViewBase_MouseUp);
+            _ListViewBase.BackColor = Color.Black;
+            _ListViewBase.ContextMenuStrip = _ContextMenuStripBase;
+            _ListViewBase.Dock = DockStyle.Fill;
+            _ListViewBase.ForeColor = Color.White;
+            _ListViewBase.FullRowSelect = true;
+            _ListViewBase.Location = new Point(0, 25);
+            _ListViewBase.Margin = new Padding(4, 3, 4, 3);
+            _ListViewBase.Name = "_ListViewBase";
+            _ListViewBase.ShowGroups = false;
+            _ListViewBase.Size = new Size(814, 255);
+            _ListViewBase.Sorting = SortOrder.Ascending;
+            _ListViewBase.TabIndex = 0;
+            _ListViewBase.UseCompatibleStateImageBehavior = false;
+            _ListViewBase.View = View.Details;
+            _ListViewBase.ColumnClick += ListViewBase_SortColumnClick;
+            _ListViewBase.SelectedIndexChanged += ListViewBase_SelectedIndexChanged;
+            _ListViewBase.KeyUp += ListViewBase_KeyUp;
+            _ListViewBase.MouseUp += ListViewBase_MouseUp;
             // 
             // _ContextMenuStripBase
             // 
-            this._ContextMenuStripBase.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this._AddToolStripMenuItem,
-            this._RemoveToolStripMenuItem});
-            this._ContextMenuStripBase.Name = "ContextMenuStripBase";
-            this._ContextMenuStripBase.Size = new System.Drawing.Size(118, 48);
+            _ContextMenuStripBase.Items.AddRange(new ToolStripItem[] { _AddToolStripMenuItem, _RemoveToolStripMenuItem });
+            _ContextMenuStripBase.Name = "ContextMenuStripBase";
+            _ContextMenuStripBase.Size = new Size(118, 48);
             // 
             // _AddToolStripMenuItem
             // 
-            this._AddToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("_AddToolStripMenuItem.Image")));
-            this._AddToolStripMenuItem.Name = "_AddToolStripMenuItem";
-            this._AddToolStripMenuItem.Size = new System.Drawing.Size(117, 22);
-            this._AddToolStripMenuItem.Text = "Add";
-            this._AddToolStripMenuItem.Click += new System.EventHandler(this.AddToolStripMenuItem_Click);
+            _AddToolStripMenuItem.Name = "_AddToolStripMenuItem";
+            _AddToolStripMenuItem.Size = new Size(117, 22);
+            _AddToolStripMenuItem.Text = "Add";
+            _AddToolStripMenuItem.Click += AddToolStripMenuItem_Click;
             // 
             // _RemoveToolStripMenuItem
             // 
-            this._RemoveToolStripMenuItem.Enabled = false;
-            this._RemoveToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("_RemoveToolStripMenuItem.Image")));
-            this._RemoveToolStripMenuItem.Name = "_RemoveToolStripMenuItem";
-            this._RemoveToolStripMenuItem.Size = new System.Drawing.Size(117, 22);
-            this._RemoveToolStripMenuItem.Text = "Remove";
-            this._RemoveToolStripMenuItem.Click += new System.EventHandler(this.RemoveToolStripMenuItem_Click);
+            _RemoveToolStripMenuItem.Enabled = false;
+            _RemoveToolStripMenuItem.Name = "_RemoveToolStripMenuItem";
+            _RemoveToolStripMenuItem.Size = new Size(117, 22);
+            _RemoveToolStripMenuItem.Text = "Remove";
+            _RemoveToolStripMenuItem.Click += RemoveToolStripMenuItem_Click;
             // 
             // _GroupBoxBase
             // 
-            this._GroupBoxBase.AutoSize = true;
-            this._GroupBoxBase.Controls.Add(this._ButtonPlay);
-            this._GroupBoxBase.Controls.Add(this._ButtonBrowse);
-            this._GroupBoxBase.Controls.Add(this._TextBoxSound);
-            this._GroupBoxBase.Controls.Add(this._LabelSound);
-            this._GroupBoxBase.Controls.Add(this._LabelClass);
-            this._GroupBoxBase.Controls.Add(this._ComboBoxClass);
-            this._GroupBoxBase.Controls.Add(this._CheckBoxAutoApply);
-            this._GroupBoxBase.Controls.Add(this._RadioButtonRegExp);
-            this._GroupBoxBase.Controls.Add(this._RadioButtonBeginsWith);
-            this._GroupBoxBase.Controls.Add(this._CheckBoxCaseSensitive);
-            this._GroupBoxBase.Controls.Add(this._RadioButtonLine);
-            this._GroupBoxBase.Controls.Add(this._RadioButtonString);
-            this._GroupBoxBase.Controls.Add(this._ButtonColorBg);
-            this._GroupBoxBase.Controls.Add(this._LabelExampleColor);
-            this._GroupBoxBase.Controls.Add(this._ButtonColorFg);
-            this._GroupBoxBase.Controls.Add(this._LabelColor);
-            this._GroupBoxBase.Controls.Add(this._TextBoxHighlight);
-            this._GroupBoxBase.Controls.Add(this._LabelHighlight);
-            this._GroupBoxBase.Controls.Add(this._ButtonApply);
-            this._GroupBoxBase.Controls.Add(this._TextBoxColor);
-            this._GroupBoxBase.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this._GroupBoxBase.Enabled = false;
-            this._GroupBoxBase.Location = new System.Drawing.Point(0, 280);
-            this._GroupBoxBase.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this._GroupBoxBase.Name = "_GroupBoxBase";
-            this._GroupBoxBase.Padding = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this._GroupBoxBase.Size = new System.Drawing.Size(814, 235);
-            this._GroupBoxBase.TabIndex = 1;
-            this._GroupBoxBase.TabStop = false;
+            _GroupBoxBase.AutoSize = true;
+            _GroupBoxBase.Controls.Add(_ButtonPlay);
+            _GroupBoxBase.Controls.Add(_ButtonBrowse);
+            _GroupBoxBase.Controls.Add(_TextBoxSound);
+            _GroupBoxBase.Controls.Add(_LabelSound);
+            _GroupBoxBase.Controls.Add(_LabelClass);
+            _GroupBoxBase.Controls.Add(_ComboBoxClass);
+            _GroupBoxBase.Controls.Add(_CheckBoxAutoApply);
+            _GroupBoxBase.Controls.Add(_RadioButtonRegExp);
+            _GroupBoxBase.Controls.Add(_RadioButtonBeginsWith);
+            _GroupBoxBase.Controls.Add(_CheckBoxCaseSensitive);
+            _GroupBoxBase.Controls.Add(_RadioButtonLine);
+            _GroupBoxBase.Controls.Add(_RadioButtonString);
+            _GroupBoxBase.Controls.Add(_ButtonColorBg);
+            _GroupBoxBase.Controls.Add(_LabelExampleColor);
+            _GroupBoxBase.Controls.Add(_ButtonColorFg);
+            _GroupBoxBase.Controls.Add(_LabelColor);
+            _GroupBoxBase.Controls.Add(_TextBoxHighlight);
+            _GroupBoxBase.Controls.Add(_LabelHighlight);
+            _GroupBoxBase.Controls.Add(_ButtonApply);
+            _GroupBoxBase.Controls.Add(_TextBoxColor);
+            _GroupBoxBase.Dock = DockStyle.Bottom;
+            _GroupBoxBase.Enabled = false;
+            _GroupBoxBase.Location = new Point(0, 280);
+            _GroupBoxBase.Margin = new Padding(4, 3, 4, 3);
+            _GroupBoxBase.Name = "_GroupBoxBase";
+            _GroupBoxBase.Padding = new Padding(4, 3, 4, 3);
+            _GroupBoxBase.Size = new Size(814, 235);
+            _GroupBoxBase.TabIndex = 1;
+            _GroupBoxBase.TabStop = false;
             // 
             // _ButtonPlay
             // 
-            this._ButtonPlay.Image = ((System.Drawing.Image)(resources.GetObject("_ButtonPlay.Image")));
-            this._ButtonPlay.Location = new System.Drawing.Point(383, 153);
-            this._ButtonPlay.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this._ButtonPlay.Name = "_ButtonPlay";
-            this._ButtonPlay.Size = new System.Drawing.Size(27, 27);
-            this._ButtonPlay.TabIndex = 12;
-            this._ButtonPlay.UseVisualStyleBackColor = true;
-            this._ButtonPlay.Click += new System.EventHandler(this.ButtonPlay_Click);
+            _ButtonPlay.Image = (Image)resources.GetObject("_ButtonPlay.Image");
+            _ButtonPlay.Location = new Point(383, 153);
+            _ButtonPlay.Margin = new Padding(4, 3, 4, 3);
+            _ButtonPlay.Name = "_ButtonPlay";
+            _ButtonPlay.Size = new Size(27, 27);
+            _ButtonPlay.TabIndex = 12;
+            _ButtonPlay.UseVisualStyleBackColor = true;
+            _ButtonPlay.Click += ButtonPlay_Click;
             // 
             // _ButtonBrowse
             // 
-            this._ButtonBrowse.Location = new System.Drawing.Point(416, 153);
-            this._ButtonBrowse.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this._ButtonBrowse.Name = "_ButtonBrowse";
-            this._ButtonBrowse.Size = new System.Drawing.Size(88, 27);
-            this._ButtonBrowse.TabIndex = 13;
-            this._ButtonBrowse.Text = "Browse";
-            this._ButtonBrowse.UseVisualStyleBackColor = true;
-            this._ButtonBrowse.Click += new System.EventHandler(this.ButtonBrowse_Click);
+            _ButtonBrowse.Location = new Point(416, 153);
+            _ButtonBrowse.Margin = new Padding(4, 3, 4, 3);
+            _ButtonBrowse.Name = "_ButtonBrowse";
+            _ButtonBrowse.Size = new Size(88, 27);
+            _ButtonBrowse.TabIndex = 13;
+            _ButtonBrowse.Text = "Browse";
+            _ButtonBrowse.UseVisualStyleBackColor = true;
+            _ButtonBrowse.Click += ButtonBrowse_Click;
             // 
             // _TextBoxSound
             // 
-            this._TextBoxSound.Location = new System.Drawing.Point(7, 156);
-            this._TextBoxSound.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this._TextBoxSound.Name = "_TextBoxSound";
-            this._TextBoxSound.Size = new System.Drawing.Size(368, 23);
-            this._TextBoxSound.TabIndex = 11;
+            _TextBoxSound.Location = new Point(7, 156);
+            _TextBoxSound.Margin = new Padding(4, 3, 4, 3);
+            _TextBoxSound.Name = "_TextBoxSound";
+            _TextBoxSound.Size = new Size(368, 23);
+            _TextBoxSound.TabIndex = 11;
             // 
             // _LabelSound
             // 
-            this._LabelSound.AutoSize = true;
-            this._LabelSound.Location = new System.Drawing.Point(4, 137);
-            this._LabelSound.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this._LabelSound.Name = "_LabelSound";
-            this._LabelSound.Size = new System.Drawing.Size(154, 15);
-            this._LabelSound.TabIndex = 15;
-            this._LabelSound.Text = "Sound File Name (Optional)";
+            _LabelSound.AutoSize = true;
+            _LabelSound.Location = new Point(4, 137);
+            _LabelSound.Margin = new Padding(4, 0, 4, 0);
+            _LabelSound.Name = "_LabelSound";
+            _LabelSound.Size = new Size(154, 15);
+            _LabelSound.TabIndex = 15;
+            _LabelSound.Text = "Sound File Name (Optional)";
             // 
             // _LabelClass
             // 
-            this._LabelClass.AutoSize = true;
-            this._LabelClass.Location = new System.Drawing.Point(351, 90);
-            this._LabelClass.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this._LabelClass.Name = "_LabelClass";
-            this._LabelClass.Size = new System.Drawing.Size(34, 15);
-            this._LabelClass.TabIndex = 13;
-            this._LabelClass.Text = "Class";
+            _LabelClass.AutoSize = true;
+            _LabelClass.Location = new Point(351, 90);
+            _LabelClass.Margin = new Padding(4, 0, 4, 0);
+            _LabelClass.Name = "_LabelClass";
+            _LabelClass.Size = new Size(34, 15);
+            _LabelClass.TabIndex = 13;
+            _LabelClass.Text = "Class";
             // 
             // _ComboBoxClass
             // 
-            this._ComboBoxClass.FormattingEnabled = true;
-            this._ComboBoxClass.Location = new System.Drawing.Point(355, 108);
-            this._ComboBoxClass.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this._ComboBoxClass.Name = "_ComboBoxClass";
-            this._ComboBoxClass.Size = new System.Drawing.Size(149, 23);
-            this._ComboBoxClass.TabIndex = 10;
-            this._ComboBoxClass.Text = "(default)";
+            _ComboBoxClass.FormattingEnabled = true;
+            _ComboBoxClass.Location = new Point(355, 108);
+            _ComboBoxClass.Margin = new Padding(4, 3, 4, 3);
+            _ComboBoxClass.Name = "_ComboBoxClass";
+            _ComboBoxClass.Size = new Size(149, 23);
+            _ComboBoxClass.TabIndex = 10;
+            _ComboBoxClass.Text = "(default)";
             // 
             // _CheckBoxAutoApply
             // 
-            this._CheckBoxAutoApply.AutoSize = true;
-            this._CheckBoxAutoApply.Location = new System.Drawing.Point(102, 190);
-            this._CheckBoxAutoApply.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this._CheckBoxAutoApply.Name = "_CheckBoxAutoApply";
-            this._CheckBoxAutoApply.Size = new System.Drawing.Size(128, 19);
-            this._CheckBoxAutoApply.TabIndex = 15;
-            this._CheckBoxAutoApply.Text = "Autoapply changes";
-            this._CheckBoxAutoApply.UseVisualStyleBackColor = true;
-            this._CheckBoxAutoApply.Visible = false;
+            _CheckBoxAutoApply.AutoSize = true;
+            _CheckBoxAutoApply.Location = new Point(102, 190);
+            _CheckBoxAutoApply.Margin = new Padding(4, 3, 4, 3);
+            _CheckBoxAutoApply.Name = "_CheckBoxAutoApply";
+            _CheckBoxAutoApply.Size = new Size(128, 19);
+            _CheckBoxAutoApply.TabIndex = 15;
+            _CheckBoxAutoApply.Text = "Autoapply changes";
+            _CheckBoxAutoApply.UseVisualStyleBackColor = true;
+            _CheckBoxAutoApply.Visible = false;
             // 
             // _RadioButtonRegExp
             // 
-            this._RadioButtonRegExp.AutoSize = true;
-            this._RadioButtonRegExp.Location = new System.Drawing.Point(233, 67);
-            this._RadioButtonRegExp.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this._RadioButtonRegExp.Name = "_RadioButtonRegExp";
-            this._RadioButtonRegExp.Size = new System.Drawing.Size(64, 19);
-            this._RadioButtonRegExp.TabIndex = 4;
-            this._RadioButtonRegExp.Text = "RegExp";
-            this._RadioButtonRegExp.UseVisualStyleBackColor = true;
-            this._RadioButtonRegExp.CheckedChanged += new System.EventHandler(this.TextBox_TextChanged);
+            _RadioButtonRegExp.AutoSize = true;
+            _RadioButtonRegExp.Location = new Point(233, 67);
+            _RadioButtonRegExp.Margin = new Padding(4, 3, 4, 3);
+            _RadioButtonRegExp.Name = "_RadioButtonRegExp";
+            _RadioButtonRegExp.Size = new Size(64, 19);
+            _RadioButtonRegExp.TabIndex = 4;
+            _RadioButtonRegExp.Text = "RegExp";
+            _RadioButtonRegExp.UseVisualStyleBackColor = true;
+            _RadioButtonRegExp.CheckedChanged += TextBox_TextChanged;
             // 
             // _RadioButtonBeginsWith
             // 
-            this._RadioButtonBeginsWith.AutoSize = true;
-            this._RadioButtonBeginsWith.Location = new System.Drawing.Point(134, 67);
-            this._RadioButtonBeginsWith.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this._RadioButtonBeginsWith.Name = "_RadioButtonBeginsWith";
-            this._RadioButtonBeginsWith.Size = new System.Drawing.Size(85, 19);
-            this._RadioButtonBeginsWith.TabIndex = 3;
-            this._RadioButtonBeginsWith.Text = "BeginsWith";
-            this._RadioButtonBeginsWith.UseVisualStyleBackColor = true;
-            this._RadioButtonBeginsWith.CheckedChanged += new System.EventHandler(this.TextBox_TextChanged);
+            _RadioButtonBeginsWith.AutoSize = true;
+            _RadioButtonBeginsWith.Location = new Point(134, 67);
+            _RadioButtonBeginsWith.Margin = new Padding(4, 3, 4, 3);
+            _RadioButtonBeginsWith.Name = "_RadioButtonBeginsWith";
+            _RadioButtonBeginsWith.Size = new Size(85, 19);
+            _RadioButtonBeginsWith.TabIndex = 3;
+            _RadioButtonBeginsWith.Text = "BeginsWith";
+            _RadioButtonBeginsWith.UseVisualStyleBackColor = true;
+            _RadioButtonBeginsWith.CheckedChanged += TextBox_TextChanged;
             // 
             // _CheckBoxCaseSensitive
             // 
-            this._CheckBoxCaseSensitive.AutoSize = true;
-            this._CheckBoxCaseSensitive.Checked = true;
-            this._CheckBoxCaseSensitive.CheckState = System.Windows.Forms.CheckState.Checked;
-            this._CheckBoxCaseSensitive.Location = new System.Drawing.Point(392, 67);
-            this._CheckBoxCaseSensitive.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this._CheckBoxCaseSensitive.Name = "_CheckBoxCaseSensitive";
-            this._CheckBoxCaseSensitive.Size = new System.Drawing.Size(100, 19);
-            this._CheckBoxCaseSensitive.TabIndex = 6;
-            this._CheckBoxCaseSensitive.Text = "Case Sensitive";
-            this._CheckBoxCaseSensitive.UseVisualStyleBackColor = true;
-            this._CheckBoxCaseSensitive.CheckedChanged += new System.EventHandler(this.TextBox_TextChanged);
+            _CheckBoxCaseSensitive.AutoSize = true;
+            _CheckBoxCaseSensitive.Checked = true;
+            _CheckBoxCaseSensitive.CheckState = CheckState.Checked;
+            _CheckBoxCaseSensitive.Location = new Point(392, 67);
+            _CheckBoxCaseSensitive.Margin = new Padding(4, 3, 4, 3);
+            _CheckBoxCaseSensitive.Name = "_CheckBoxCaseSensitive";
+            _CheckBoxCaseSensitive.Size = new Size(100, 19);
+            _CheckBoxCaseSensitive.TabIndex = 6;
+            _CheckBoxCaseSensitive.Text = "Case Sensitive";
+            _CheckBoxCaseSensitive.UseVisualStyleBackColor = true;
+            _CheckBoxCaseSensitive.CheckedChanged += TextBox_TextChanged;
             // 
             // _RadioButtonLine
             // 
-            this._RadioButtonLine.AutoSize = true;
-            this._RadioButtonLine.Location = new System.Drawing.Point(75, 67);
-            this._RadioButtonLine.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this._RadioButtonLine.Name = "_RadioButtonLine";
-            this._RadioButtonLine.Size = new System.Drawing.Size(47, 19);
-            this._RadioButtonLine.TabIndex = 2;
-            this._RadioButtonLine.Text = "Line";
-            this._RadioButtonLine.UseVisualStyleBackColor = true;
-            this._RadioButtonLine.CheckedChanged += new System.EventHandler(this.TextBox_TextChanged);
+            _RadioButtonLine.AutoSize = true;
+            _RadioButtonLine.Location = new Point(75, 67);
+            _RadioButtonLine.Margin = new Padding(4, 3, 4, 3);
+            _RadioButtonLine.Name = "_RadioButtonLine";
+            _RadioButtonLine.Size = new Size(47, 19);
+            _RadioButtonLine.TabIndex = 2;
+            _RadioButtonLine.Text = "Line";
+            _RadioButtonLine.UseVisualStyleBackColor = true;
+            _RadioButtonLine.CheckedChanged += TextBox_TextChanged;
             // 
             // _RadioButtonString
             // 
-            this._RadioButtonString.AutoSize = true;
-            this._RadioButtonString.Checked = true;
-            this._RadioButtonString.Location = new System.Drawing.Point(7, 67);
-            this._RadioButtonString.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this._RadioButtonString.Name = "_RadioButtonString";
-            this._RadioButtonString.Size = new System.Drawing.Size(56, 19);
-            this._RadioButtonString.TabIndex = 1;
-            this._RadioButtonString.TabStop = true;
-            this._RadioButtonString.Text = "String";
-            this._RadioButtonString.UseVisualStyleBackColor = true;
-            this._RadioButtonString.CheckedChanged += new System.EventHandler(this.TextBox_TextChanged);
+            _RadioButtonString.AutoSize = true;
+            _RadioButtonString.Checked = true;
+            _RadioButtonString.Location = new Point(7, 67);
+            _RadioButtonString.Margin = new Padding(4, 3, 4, 3);
+            _RadioButtonString.Name = "_RadioButtonString";
+            _RadioButtonString.Size = new Size(56, 19);
+            _RadioButtonString.TabIndex = 1;
+            _RadioButtonString.TabStop = true;
+            _RadioButtonString.Text = "String";
+            _RadioButtonString.UseVisualStyleBackColor = true;
+            _RadioButtonString.CheckedChanged += TextBox_TextChanged;
             // 
             // _ButtonColorBg
             // 
-            this._ButtonColorBg.Image = ((System.Drawing.Image)(resources.GetObject("_ButtonColorBg.Image")));
-            this._ButtonColorBg.Location = new System.Drawing.Point(307, 107);
-            this._ButtonColorBg.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this._ButtonColorBg.Name = "_ButtonColorBg";
-            this._ButtonColorBg.Size = new System.Drawing.Size(27, 27);
-            this._ButtonColorBg.TabIndex = 9;
-            this._ButtonColorBg.UseVisualStyleBackColor = true;
-            this._ButtonColorBg.Click += new System.EventHandler(this.ButtonColorBg_Click);
+            _ButtonColorBg.Image = (Image)resources.GetObject("_ButtonColorBg.Image");
+            _ButtonColorBg.Location = new Point(307, 107);
+            _ButtonColorBg.Margin = new Padding(4, 3, 4, 3);
+            _ButtonColorBg.Name = "_ButtonColorBg";
+            _ButtonColorBg.Size = new Size(27, 27);
+            _ButtonColorBg.TabIndex = 9;
+            _ButtonColorBg.UseVisualStyleBackColor = true;
+            _ButtonColorBg.Click += ButtonColorBg_Click;
             // 
             // _LabelExampleColor
             // 
-            this._LabelExampleColor.BackColor = System.Drawing.Color.Black;
-            this._LabelExampleColor.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this._LabelExampleColor.ForeColor = System.Drawing.Color.Black;
-            this._LabelExampleColor.Location = new System.Drawing.Point(191, 108);
-            this._LabelExampleColor.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this._LabelExampleColor.Name = "_LabelExampleColor";
-            this._LabelExampleColor.Size = new System.Drawing.Size(75, 23);
-            this._LabelExampleColor.TabIndex = 11;
-            this._LabelExampleColor.Text = "Color";
-            this._LabelExampleColor.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            _LabelExampleColor.BackColor = Color.Black;
+            _LabelExampleColor.Font = new Font("Verdana", 9F, FontStyle.Bold, GraphicsUnit.Point);
+            _LabelExampleColor.ForeColor = Color.Black;
+            _LabelExampleColor.Location = new Point(191, 108);
+            _LabelExampleColor.Margin = new Padding(4, 0, 4, 0);
+            _LabelExampleColor.Name = "_LabelExampleColor";
+            _LabelExampleColor.Size = new Size(75, 23);
+            _LabelExampleColor.TabIndex = 11;
+            _LabelExampleColor.Text = "Color";
+            _LabelExampleColor.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // _ButtonColorFg
             // 
-            this._ButtonColorFg.Image = ((System.Drawing.Image)(resources.GetObject("_ButtonColorFg.Image")));
-            this._ButtonColorFg.Location = new System.Drawing.Point(273, 107);
-            this._ButtonColorFg.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this._ButtonColorFg.Name = "_ButtonColorFg";
-            this._ButtonColorFg.Size = new System.Drawing.Size(27, 27);
-            this._ButtonColorFg.TabIndex = 8;
-            this._ButtonColorFg.UseVisualStyleBackColor = true;
-            this._ButtonColorFg.Click += new System.EventHandler(this.ButtonColorFg_Click);
+            _ButtonColorFg.Image = (Image)resources.GetObject("_ButtonColorFg.Image");
+            _ButtonColorFg.Location = new Point(273, 107);
+            _ButtonColorFg.Margin = new Padding(4, 3, 4, 3);
+            _ButtonColorFg.Name = "_ButtonColorFg";
+            _ButtonColorFg.Size = new Size(27, 27);
+            _ButtonColorFg.TabIndex = 8;
+            _ButtonColorFg.UseVisualStyleBackColor = true;
+            _ButtonColorFg.Click += ButtonColorFg_Click;
             // 
             // _LabelColor
             // 
-            this._LabelColor.AutoSize = true;
-            this._LabelColor.Location = new System.Drawing.Point(4, 90);
-            this._LabelColor.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this._LabelColor.Name = "_LabelColor";
-            this._LabelColor.Size = new System.Drawing.Size(36, 15);
-            this._LabelColor.TabIndex = 10;
-            this._LabelColor.Text = "Color";
+            _LabelColor.AutoSize = true;
+            _LabelColor.Location = new Point(4, 90);
+            _LabelColor.Margin = new Padding(4, 0, 4, 0);
+            _LabelColor.Name = "_LabelColor";
+            _LabelColor.Size = new Size(36, 15);
+            _LabelColor.TabIndex = 10;
+            _LabelColor.Text = "Color";
             // 
             // _TextBoxHighlight
             // 
-            this._TextBoxHighlight.Location = new System.Drawing.Point(7, 37);
-            this._TextBoxHighlight.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this._TextBoxHighlight.Name = "_TextBoxHighlight";
-            this._TextBoxHighlight.Size = new System.Drawing.Size(496, 23);
-            this._TextBoxHighlight.TabIndex = 0;
-            this._TextBoxHighlight.TextChanged += new System.EventHandler(this.TextBox_TextChanged);
+            _TextBoxHighlight.Location = new Point(7, 37);
+            _TextBoxHighlight.Margin = new Padding(4, 3, 4, 3);
+            _TextBoxHighlight.Name = "_TextBoxHighlight";
+            _TextBoxHighlight.Size = new Size(496, 23);
+            _TextBoxHighlight.TabIndex = 0;
+            _TextBoxHighlight.TextChanged += TextBox_TextChanged;
             // 
             // _LabelHighlight
             // 
-            this._LabelHighlight.AutoSize = true;
-            this._LabelHighlight.Location = new System.Drawing.Point(4, 18);
-            this._LabelHighlight.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this._LabelHighlight.Name = "_LabelHighlight";
-            this._LabelHighlight.Size = new System.Drawing.Size(57, 15);
-            this._LabelHighlight.TabIndex = 8;
-            this._LabelHighlight.Text = "Highlight";
+            _LabelHighlight.AutoSize = true;
+            _LabelHighlight.Location = new Point(4, 18);
+            _LabelHighlight.Margin = new Padding(4, 0, 4, 0);
+            _LabelHighlight.Name = "_LabelHighlight";
+            _LabelHighlight.Size = new Size(57, 15);
+            _LabelHighlight.TabIndex = 8;
+            _LabelHighlight.Text = "Highlight";
             // 
             // _ButtonApply
             // 
-            this._ButtonApply.Location = new System.Drawing.Point(7, 186);
-            this._ButtonApply.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this._ButtonApply.Name = "_ButtonApply";
-            this._ButtonApply.Size = new System.Drawing.Size(88, 27);
-            this._ButtonApply.TabIndex = 14;
-            this._ButtonApply.Text = "Apply";
-            this._ButtonApply.UseVisualStyleBackColor = true;
-            this._ButtonApply.Click += new System.EventHandler(this.ButtonApply_Click);
+            _ButtonApply.Location = new Point(7, 186);
+            _ButtonApply.Margin = new Padding(4, 3, 4, 3);
+            _ButtonApply.Name = "_ButtonApply";
+            _ButtonApply.Size = new Size(88, 27);
+            _ButtonApply.TabIndex = 14;
+            _ButtonApply.Text = "Apply";
+            _ButtonApply.UseVisualStyleBackColor = true;
+            _ButtonApply.Click += ButtonApply_Click;
             // 
             // _TextBoxColor
             // 
-            this._TextBoxColor.Location = new System.Drawing.Point(7, 108);
-            this._TextBoxColor.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this._TextBoxColor.Name = "_TextBoxColor";
-            this._TextBoxColor.Size = new System.Drawing.Size(177, 23);
-            this._TextBoxColor.TabIndex = 7;
-            this._TextBoxColor.TextChanged += new System.EventHandler(this.TextBox_TextChanged);
-            this._TextBoxColor.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TextBoxColor_KeyDown);
-            this._TextBoxColor.Leave += new System.EventHandler(this.TextBoxColor_Leave);
+            _TextBoxColor.Location = new Point(7, 108);
+            _TextBoxColor.Margin = new Padding(4, 3, 4, 3);
+            _TextBoxColor.Name = "_TextBoxColor";
+            _TextBoxColor.Size = new Size(177, 23);
+            _TextBoxColor.TabIndex = 7;
+            _TextBoxColor.TextChanged += TextBox_TextChanged;
+            _TextBoxColor.KeyDown += TextBoxColor_KeyDown;
+            _TextBoxColor.Leave += TextBoxColor_Leave;
             // 
             // _ColorDialogPicker
             // 
-            this._ColorDialogPicker.FullOpen = true;
+            _ColorDialogPicker.FullOpen = true;
             // 
             // _ToolStripMenu
             // 
-            this._ToolStripMenu.AllowMerge = false;
-            this._ToolStripMenu.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
-            this._ToolStripMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this._ToolStripButtonRefresh,
-            this._ToolStripSeparator2,
-            this._ToolStripButtonAdd,
-            this._ToolStripButtonRemove,
-            this._ToolStripSeparator1,
-            this._ToolStripButtonLoad,
-            this._ToolStripButtonSave});
-            this._ToolStripMenu.Location = new System.Drawing.Point(0, 0);
-            this._ToolStripMenu.Name = "_ToolStripMenu";
-            this._ToolStripMenu.Size = new System.Drawing.Size(814, 25);
-            this._ToolStripMenu.TabIndex = 2;
+            _ToolStripMenu.AllowMerge = false;
+            _ToolStripMenu.GripStyle = ToolStripGripStyle.Hidden;
+            _ToolStripMenu.Items.AddRange(new ToolStripItem[] { _ToolStripButtonRefresh, _ToolStripSeparator2, _ToolStripButtonAdd, _ToolStripButtonRemove, _ToolStripSeparator1, _ToolStripButtonLoad, _ToolStripButtonSave });
+            _ToolStripMenu.Location = new Point(0, 0);
+            _ToolStripMenu.Name = "_ToolStripMenu";
+            _ToolStripMenu.Size = new Size(814, 25);
+            _ToolStripMenu.TabIndex = 2;
             // 
             // _ToolStripButtonRefresh
             // 
-            this._ToolStripButtonRefresh.Image = ((System.Drawing.Image)(resources.GetObject("_ToolStripButtonRefresh.Image")));
-            this._ToolStripButtonRefresh.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this._ToolStripButtonRefresh.Name = "_ToolStripButtonRefresh";
-            this._ToolStripButtonRefresh.Size = new System.Drawing.Size(66, 22);
-            this._ToolStripButtonRefresh.Text = "Refresh";
-            this._ToolStripButtonRefresh.Click += new System.EventHandler(this.ToolStripButtonRefresh_Click);
+            _ToolStripButtonRefresh.ImageTransparentColor = Color.Magenta;
+            _ToolStripButtonRefresh.Name = "_ToolStripButtonRefresh";
+            _ToolStripButtonRefresh.Size = new Size(50, 22);
+            _ToolStripButtonRefresh.Text = "Refresh";
+            _ToolStripButtonRefresh.Click += ToolStripButtonRefresh_Click;
             // 
             // _ToolStripSeparator2
             // 
-            this._ToolStripSeparator2.Name = "_ToolStripSeparator2";
-            this._ToolStripSeparator2.Size = new System.Drawing.Size(6, 25);
+            _ToolStripSeparator2.Name = "_ToolStripSeparator2";
+            _ToolStripSeparator2.Size = new Size(6, 25);
             // 
             // _ToolStripButtonAdd
             // 
-            this._ToolStripButtonAdd.Image = ((System.Drawing.Image)(resources.GetObject("_ToolStripButtonAdd.Image")));
-            this._ToolStripButtonAdd.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this._ToolStripButtonAdd.Name = "_ToolStripButtonAdd";
-            this._ToolStripButtonAdd.Size = new System.Drawing.Size(49, 22);
-            this._ToolStripButtonAdd.Text = "Add";
-            this._ToolStripButtonAdd.Click += new System.EventHandler(this.ToolStripButtonAdd_Click);
+            _ToolStripButtonAdd.ImageTransparentColor = Color.Magenta;
+            _ToolStripButtonAdd.Name = "_ToolStripButtonAdd";
+            _ToolStripButtonAdd.Size = new Size(33, 22);
+            _ToolStripButtonAdd.Text = "Add";
+            _ToolStripButtonAdd.Click += ToolStripButtonAdd_Click;
             // 
             // _ToolStripButtonRemove
             // 
-            this._ToolStripButtonRemove.Enabled = false;
-            this._ToolStripButtonRemove.Image = ((System.Drawing.Image)(resources.GetObject("_ToolStripButtonRemove.Image")));
-            this._ToolStripButtonRemove.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this._ToolStripButtonRemove.Name = "_ToolStripButtonRemove";
-            this._ToolStripButtonRemove.Size = new System.Drawing.Size(70, 22);
-            this._ToolStripButtonRemove.Text = "Remove";
-            this._ToolStripButtonRemove.Click += new System.EventHandler(this.ToolStripButtonRemove_Click);
+            _ToolStripButtonRemove.Enabled = false;
+            _ToolStripButtonRemove.ImageTransparentColor = Color.Magenta;
+            _ToolStripButtonRemove.Name = "_ToolStripButtonRemove";
+            _ToolStripButtonRemove.Size = new Size(54, 22);
+            _ToolStripButtonRemove.Text = "Remove";
+            _ToolStripButtonRemove.Click += ToolStripButtonRemove_Click;
             // 
             // _ToolStripSeparator1
             // 
-            this._ToolStripSeparator1.Name = "_ToolStripSeparator1";
-            this._ToolStripSeparator1.Size = new System.Drawing.Size(6, 25);
+            _ToolStripSeparator1.Name = "_ToolStripSeparator1";
+            _ToolStripSeparator1.Size = new Size(6, 25);
             // 
             // _ToolStripButtonLoad
             // 
-            this._ToolStripButtonLoad.Image = ((System.Drawing.Image)(resources.GetObject("_ToolStripButtonLoad.Image")));
-            this._ToolStripButtonLoad.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this._ToolStripButtonLoad.Name = "_ToolStripButtonLoad";
-            this._ToolStripButtonLoad.Size = new System.Drawing.Size(53, 22);
-            this._ToolStripButtonLoad.Text = "Load";
-            this._ToolStripButtonLoad.Click += new System.EventHandler(this.ToolStripButtonLoad_Click);
+            _ToolStripButtonLoad.ImageTransparentColor = Color.Magenta;
+            _ToolStripButtonLoad.Name = "_ToolStripButtonLoad";
+            _ToolStripButtonLoad.Size = new Size(37, 22);
+            _ToolStripButtonLoad.Text = "Load";
+            _ToolStripButtonLoad.Click += ToolStripButtonLoad_Click;
             // 
             // _ToolStripButtonSave
             // 
-            this._ToolStripButtonSave.Image = ((System.Drawing.Image)(resources.GetObject("_ToolStripButtonSave.Image")));
-            this._ToolStripButtonSave.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this._ToolStripButtonSave.Name = "_ToolStripButtonSave";
-            this._ToolStripButtonSave.Size = new System.Drawing.Size(51, 22);
-            this._ToolStripButtonSave.Text = "Save";
-            this._ToolStripButtonSave.Click += new System.EventHandler(this.ToolStripButtonSave_Click);
+            _ToolStripButtonSave.ImageTransparentColor = Color.Magenta;
+            _ToolStripButtonSave.Name = "_ToolStripButtonSave";
+            _ToolStripButtonSave.Size = new Size(35, 22);
+            _ToolStripButtonSave.Text = "Save";
+            _ToolStripButtonSave.Click += ToolStripButtonSave_Click;
             // 
             // _OpenFileDialogSound
             // 
-            this._OpenFileDialogSound.DefaultExt = "wav";
-            this._OpenFileDialogSound.Filter = "Sounds|*.wav|All files|*.*";
-            this._OpenFileDialogSound.RestoreDirectory = true;
-            this._OpenFileDialogSound.Title = "Select Sound File";
+            _OpenFileDialogSound.DefaultExt = "wav";
+            _OpenFileDialogSound.Filter = "Sounds|*.wav|All files|*.*";
+            _OpenFileDialogSound.RestoreDirectory = true;
+            _OpenFileDialogSound.Title = "Select Sound File";
             // 
             // UCHighlightStrings
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this._ListViewBase);
-            this.Controls.Add(this._GroupBoxBase);
-            this.Controls.Add(this._ToolStripMenu);
-            this.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.Name = "UCHighlightStrings";
-            this.Size = new System.Drawing.Size(814, 515);
-            this.Load += new System.EventHandler(this.UCWindows_Load);
-            this._ContextMenuStripBase.ResumeLayout(false);
-            this._GroupBoxBase.ResumeLayout(false);
-            this._GroupBoxBase.PerformLayout();
-            this._ToolStripMenu.ResumeLayout(false);
-            this._ToolStripMenu.PerformLayout();
-            this.ResumeLayout(false);
-            this.PerformLayout();
-
+            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleMode = AutoScaleMode.Font;
+            Controls.Add(_ListViewBase);
+            Controls.Add(_GroupBoxBase);
+            Controls.Add(_ToolStripMenu);
+            Margin = new Padding(4, 3, 4, 3);
+            Name = "UCHighlightStrings";
+            Size = new Size(814, 515);
+            Load += UCWindows_Load;
+            _ContextMenuStripBase.ResumeLayout(false);
+            _GroupBoxBase.ResumeLayout(false);
+            _GroupBoxBase.PerformLayout();
+            _ToolStripMenu.ResumeLayout(false);
+            _ToolStripMenu.PerformLayout();
+            ResumeLayout(false);
+            PerformLayout();
         }
 
         private ListView _ListViewBase;
