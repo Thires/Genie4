@@ -1341,7 +1341,7 @@ namespace GenieClient.Genie
                         {
                             if (!m_oGlobals.Config.bShowImages) break;
                             var attribute = GetAttributeData(oXmlNode, "picture");
-                            if (!string.IsNullOrEmpty(attribute) && attribute != "0") 
+                            if (!string.IsNullOrEmpty(attribute) && attribute != "0")
                             {
                                 attribute += ".jpg";
                                 string gamecode = "DR"; //default DR
@@ -3191,7 +3191,7 @@ namespace GenieClient.Genie
                         m_iConnectAttempts = 0;
                         m_bManualDisconnect = false;
                         m_oReconnectTime = default;
-                        m_oSocket.Send(m_sConnectKey + Constants.vbLf + "FE:WRAYTH /VERSION:1.0.1.22 /P:WIN_UNKNOWN /XML" + Constants.vbLf);    // TEMP
+                        m_oSocket.Send(m_sConnectKey + Constants.vbLf + "FE:WRAYTH /VERSION:1.0.1.28 /P:WIN_UNKNOWN /XML" + Constants.vbLf);    // TEMP
                         string argkey = "connected";
                         m_oGlobals.VariableList["connected"] = m_oSocket.IsConnected ? "1" : "0";
                         VariableChanged("$connected");

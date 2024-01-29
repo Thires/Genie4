@@ -1,4 +1,6 @@
-﻿namespace GenieClient.Forms
+﻿using System.Windows.Forms;
+
+namespace GenieClient.Forms
 {
     partial class FormMapperSettings
     {
@@ -46,6 +48,19 @@
             _TextboxClass = new System.Windows.Forms.TextBox();
             lblClasses = new System.Windows.Forms.Label();
             _ButtonSetClasses = new System.Windows.Forms.Button();
+
+            _ButtonSetTypeahead = new Button();
+            _ButtonSetDragging = new Button();
+            _ButtonSetUserWalk = new Button();
+            _ButtonSetClasses = new Button();
+            CheckedListVariables = new CheckedListBox();
+            _TextboxAction = new TextBox();
+            _TextboxSuccess = new TextBox();
+            _TextboxRetry = new TextBox();
+            _TextboxDragging = new TextBox();
+            _TextboxTypeahead = new TextBox();
+            _TextboxClass = new TextBox();
+
             SuspendLayout();
             // 
             // CheckedListVariables
