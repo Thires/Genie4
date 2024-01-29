@@ -1045,7 +1045,7 @@ namespace GenieClient
             _LabelSpellC.Location = new Point(925, 0);
             _LabelSpellC.Margin = new Padding(0);
             _LabelSpellC.Name = "_LabelSpellC";
-            _LabelSpellC.Size = new Size(242, 43);
+            _LabelSpellC.Size = new Size(242, 37);
             _LabelSpellC.TabIndex = 12;
             _LabelSpellC.Text = "None";
             _LabelSpellC.TextAlign = ContentAlignment.MiddleLeft;
@@ -1057,7 +1057,7 @@ namespace GenieClient
             _LabelRHC.Location = new Point(673, 0);
             _LabelRHC.Margin = new Padding(0);
             _LabelRHC.Name = "_LabelRHC";
-            _LabelRHC.Size = new Size(240, 43);
+            _LabelRHC.Size = new Size(240, 37);
             _LabelRHC.TabIndex = 11;
             _LabelRHC.Text = "Empty";
             _LabelRHC.TextAlign = ContentAlignment.MiddleLeft;
@@ -1069,7 +1069,7 @@ namespace GenieClient
             _LabelLHC.Location = new Point(420, 0);
             _LabelLHC.Margin = new Padding(0);
             _LabelLHC.Name = "_LabelLHC";
-            _LabelLHC.Size = new Size(241, 43);
+            _LabelLHC.Size = new Size(241, 37);
             _LabelLHC.TabIndex = 10;
             _LabelLHC.Text = "Empty";
             _LabelLHC.TextAlign = ContentAlignment.MiddleLeft;
@@ -1082,7 +1082,7 @@ namespace GenieClient
             _LabelSpell.Location = new Point(913, 0);
             _LabelSpell.Margin = new Padding(0);
             _LabelSpell.Name = "_LabelSpell";
-            _LabelSpell.Size = new Size(12, 43);
+            _LabelSpell.Size = new Size(12, 37);
             _LabelSpell.TabIndex = 9;
             _LabelSpell.Text = "S";
             _LabelSpell.TextAlign = ContentAlignment.MiddleCenter;
@@ -1095,7 +1095,7 @@ namespace GenieClient
             _LabelRH.Location = new Point(661, 0);
             _LabelRH.Margin = new Padding(0);
             _LabelRH.Name = "_LabelRH";
-            _LabelRH.Size = new Size(12, 43);
+            _LabelRH.Size = new Size(12, 37);
             _LabelRH.TabIndex = 8;
             _LabelRH.Text = "R";
             _LabelRH.TextAlign = ContentAlignment.MiddleCenter;
@@ -1108,7 +1108,7 @@ namespace GenieClient
             _LabelLH.Location = new Point(408, 0);
             _LabelLH.Margin = new Padding(0);
             _LabelLH.Name = "_LabelLH";
-            _LabelLH.Size = new Size(12, 43);
+            _LabelLH.Size = new Size(12, 37);
             _LabelLH.TabIndex = 7;
             _LabelLH.Text = "L";
             _LabelLH.TextAlign = ContentAlignment.MiddleCenter;
@@ -1120,7 +1120,7 @@ namespace GenieClient
             _LabelRT.Location = new Point(1, 0);
             _LabelRT.Margin = new Padding(4, 0, 4, 0);
             _LabelRT.Name = "_LabelRT";
-            _LabelRT.Size = new Size(12, 37);
+            _LabelRT.Size = new Size(12, 32);
             _LabelRT.TabIndex = 6;
             _LabelRT.Text = "RT";
             _LabelRT.TextAlign = ContentAlignment.MiddleCenter;
@@ -1133,7 +1133,7 @@ namespace GenieClient
             _PanelBars.Location = new Point(0, 724);
             _PanelBars.Margin = new Padding(4, 3, 4, 3);
             _PanelBars.Name = "_PanelBars";
-            _PanelBars.Size = new Size(1449, 20);
+            _PanelBars.Size = new Size(1449, 17);
             _PanelBars.TabIndex = 10;
             // 
             // _TableLayoutPanelBars
@@ -1155,7 +1155,7 @@ namespace GenieClient
             _TableLayoutPanelBars.Name = "_TableLayoutPanelBars";
             _TableLayoutPanelBars.RowCount = 1;
             _TableLayoutPanelBars.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
-            _TableLayoutPanelBars.Size = new Size(1449, 20);
+            _TableLayoutPanelBars.Size = new Size(1449, 17);
             _TableLayoutPanelBars.TabIndex = 0;
             // 
             // _ComponentBarsConc
@@ -1170,7 +1170,7 @@ namespace GenieClient
             _ComponentBarsConc.Location = new Point(578, 0);
             _ComponentBarsConc.Margin = new Padding(0);
             _ComponentBarsConc.Name = "_ComponentBarsConc";
-            _ComponentBarsConc.Size = new Size(289, 20);
+            _ComponentBarsConc.Size = new Size(289, 17);
             _ComponentBarsConc.TabIndex = 20;
             _ComponentBarsConc.Value = 100;
             // 
@@ -1186,7 +1186,7 @@ namespace GenieClient
             _ComponentBarsFatigue.Location = new Point(867, 0);
             _ComponentBarsFatigue.Margin = new Padding(0);
             _ComponentBarsFatigue.Name = "_ComponentBarsFatigue";
-            _ComponentBarsFatigue.Size = new Size(289, 20);
+            _ComponentBarsFatigue.Size = new Size(289, 17);
             _ComponentBarsFatigue.TabIndex = 17;
             _ComponentBarsFatigue.Value = 100;
             // 
@@ -1202,7 +1202,7 @@ namespace GenieClient
             _ComponentBarsMana.Location = new Point(289, 0);
             _ComponentBarsMana.Margin = new Padding(0);
             _ComponentBarsMana.Name = "_ComponentBarsMana";
-            _ComponentBarsMana.Size = new Size(289, 20);
+            _ComponentBarsMana.Size = new Size(289, 17);
             _ComponentBarsMana.TabIndex = 19;
             _ComponentBarsMana.Value = 100;
             // 
@@ -1218,7 +1218,7 @@ namespace GenieClient
             _ComponentBarsSpirit.Location = new Point(1156, 0);
             _ComponentBarsSpirit.Margin = new Padding(0);
             _ComponentBarsSpirit.Name = "_ComponentBarsSpirit";
-            _ComponentBarsSpirit.Size = new Size(293, 20);
+            _ComponentBarsSpirit.Size = new Size(293, 17);
             _ComponentBarsSpirit.TabIndex = 18;
             _ComponentBarsSpirit.Value = 100;
             // 
@@ -1234,7 +1234,7 @@ namespace GenieClient
             _ComponentBarsHealth.Location = new Point(0, 0);
             _ComponentBarsHealth.Margin = new Padding(0);
             _ComponentBarsHealth.Name = "_ComponentBarsHealth";
-            _ComponentBarsHealth.Size = new Size(289, 20);
+            _ComponentBarsHealth.Size = new Size(289, 17);
             _ComponentBarsHealth.TabIndex = 0;
             _ComponentBarsHealth.Value = 100;
             // 
@@ -1247,7 +1247,7 @@ namespace GenieClient
             _PanelStatus.Location = new Point(0, 658);
             _PanelStatus.Margin = new Padding(0);
             _PanelStatus.Name = "_PanelStatus";
-            _PanelStatus.Size = new Size(1449, 43);
+            _PanelStatus.Size = new Size(1449, 37);
             _PanelStatus.TabIndex = 12;
             _PanelStatus.Visible = false;
             // 
@@ -1277,7 +1277,7 @@ namespace GenieClient
             _TableLayoutPanelFlow.RowCount = 1;
             _TableLayoutPanelFlow.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
             _TableLayoutPanelFlow.RowStyles.Add(new RowStyle(SizeType.Absolute, 20F));
-            _TableLayoutPanelFlow.Size = new Size(1167, 43);
+            _TableLayoutPanelFlow.Size = new Size(1167, 37);
             _TableLayoutPanelFlow.TabIndex = 0;
             // 
             // _PanelFixed

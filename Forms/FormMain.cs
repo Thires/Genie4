@@ -2260,6 +2260,9 @@ namespace GenieClient
                     I = 0;
                 }
 
+                bool bHideShowScrollbars = m_oConfig.GetValue("Genie/Windows/Game", "HideShowScrollbars", false); // Hide/Show scrollbars
+                m_oOutputMain.HideShowScrollbars = bHideShowScrollbars;
+
                 bool bTimeStamp = m_oConfig.GetValue("Genie/Windows/Game", "TimeStamp", false);
                 m_oOutputMain.TimeStamp = bTimeStamp;
                 string sColorName = m_oConfig.GetValue("Genie/Windows/Game", "Colors", string.Empty);
@@ -2339,6 +2342,7 @@ namespace GenieClient
                         sColorName = m_oConfig.GetValue("Genie/Windows/Window" + j.ToString(), "Colors", string.Empty);
                         bTimeStamp = m_oConfig.GetValue("Genie/Windows/Window" + j.ToString(), "TimeStamp", false);
                         bNameListOnly = m_oConfig.GetValue("Genie/Windows/Window" + j.ToString(), "NameListOnly", false);
+                        bHideShowScrollbars = m_oConfig.GetValue("Genie/Windows/Window" + j.ToString(), "HideShowScrollbars", false); // Hide/Show scrollbars
                         FormSkin oFormTemp = null;
                         sFontFamily = m_oConfig.GetValue("Genie/Windows/Window" + j.ToString() + "/Font", "Family", string.Empty);
                         if (sFontFamily.Length > 0)
@@ -2357,6 +2361,7 @@ namespace GenieClient
                         {
                             oFormTemp.TimeStamp = bTimeStamp;
                             oFormTemp.NameListOnly = bNameListOnly;
+                            oFormTemp.HideShowScrollbars = bHideShowScrollbars; // Hide/Show scrollbars
                         }
                     }
                 }
@@ -2460,6 +2465,7 @@ namespace GenieClient
             m_oConfig.SetValue("Genie/Windows/Game", "TimeStamp", m_oOutputMain.TimeStamp.ToString());
             m_oConfig.SetValue("Genie/Windows/Game", "Colors", Genie.ColorCode.ColorToString(m_oOutputMain.RichTextBoxOutput.ForeColor, m_oOutputMain.RichTextBoxOutput.BackColor));
             m_oConfig.SetValue("Genie/Windows/Game", "NameListOnly", m_oOutputMain.NameListOnly.ToString());
+            m_oConfig.SetValue("Genie/Windows/Game", "HideShowScrollbars", m_oOutputMain.HideShowScrollbars.ToString()); // Hide/Show scrollbars
             m_oConfig.SetValue("Genie/Windows/Game/Font", "Family", m_oOutputMain.TextFont.Name.ToString());
             m_oConfig.SetValue("Genie/Windows/Game/Font", "Size", m_oOutputMain.TextFont.Size.ToString());
             m_oConfig.SetValue("Genie/Windows/Game/Font", "Style", m_oOutputMain.TextFont.Style.ToString());
@@ -2492,6 +2498,7 @@ namespace GenieClient
                 m_oConfig.SetValue("Genie/Windows/Window" + i.ToString(), "TimeStamp", tmpFormSkin.TimeStamp.ToString());
                 m_oConfig.SetValue("Genie/Windows/Window" + i.ToString(), "Colors", Genie.ColorCode.ColorToString(tmpFormSkin.RichTextBoxOutput.ForeColor, tmpFormSkin.RichTextBoxOutput.BackColor));
                 m_oConfig.SetValue("Genie/Windows/Window" + i.ToString(), "NameListOnly", tmpFormSkin.NameListOnly.ToString());
+                m_oConfig.SetValue("Genie/Windows/Window" + i.ToString(), "HideShowScrollbars", tmpFormSkin.HideShowScrollbars.ToString()); // Hide/Show scrollbars
                 m_oConfig.SetValue("Genie/Windows/Window" + i.ToString() + "/Font", "Family", tmpFormSkin.TextFont.Name.ToString());
                 m_oConfig.SetValue("Genie/Windows/Window" + i.ToString() + "/Font", "Size", tmpFormSkin.TextFont.Size.ToString());
                 m_oConfig.SetValue("Genie/Windows/Window" + i.ToString() + "/Font", "Style", tmpFormSkin.TextFont.Style.ToString());
@@ -2784,7 +2791,7 @@ namespace GenieClient
 
             if (Information.IsNothing(m_oOutputPortrait))
             {
-                SafeCreateOutputForm("portrait", "Portrait", null, 250, 350, 10, 10, false);
+                SafeCreateOutputForm("portrait", "Portrait", null, 350, 350, 10, 10, false);
             }
         }
 
@@ -3758,21 +3765,21 @@ namespace GenieClient
                 case "inventory":
                     {
                         m_oOutputInv = oForm;
-                        oForm.UserForm = false;
+                        oForm.UserForm = true;
                         break;
                     }
 
                 case "familiar":
                     {
                         m_oOutputFamiliar = oForm;
-                        oForm.UserForm = false;
+                        oForm.UserForm = true;
                         break;
                     }
 
                 case "thoughts":
                     {
                         m_oOutputThoughts = oForm;
-                        oForm.UserForm = false;
+                        oForm.UserForm = true;
                         break;
                     }
 
@@ -3780,7 +3787,7 @@ namespace GenieClient
                 case "arrivals":
                     {
                         m_oOutputLogons = oForm;
-                        oForm.UserForm = false;
+                        oForm.UserForm = true;
                         break;
                     }
 
@@ -3788,49 +3795,49 @@ namespace GenieClient
                 case "death":
                     {
                         m_oOutputDeath = oForm;
-                        oForm.UserForm = false;
+                        oForm.UserForm = true;
                         break;
                     }
 
                 case "room":
                     {
                         m_oOutputRoom = oForm;
-                        oForm.UserForm = false;
+                        oForm.UserForm = true;
                         break;
                     }
 
                 case "log":
                     {
                         m_oOutputLog = oForm;
-                        oForm.UserForm = false;
+                        oForm.UserForm = true;
                         break;
                     }
 
                 case "debug":
                     {
                         m_oOutputDebug = oForm;
-                        oForm.UserForm = false;
+                        oForm.UserForm = true;
                         break;
                     }
                 case "percWindow":
                 case "percwindow":
                     {
                         m_oOutputActiveSpells = oForm;
-                        oForm.UserForm = false;
+                        oForm.UserForm = true;
                         break;
                     }
 
                 case "combat":
                     {
                         m_oOutputCombat = oForm;
-                        oForm.UserForm = false;
+                        oForm.UserForm = true;
                         break;
                     }
 
                 case "portrait":
                     {
                         m_oOutputPortrait = oForm;
-                        oForm.UserForm = false;
+                        oForm.UserForm = true;
                         break;
                     }
             }
@@ -8643,6 +8650,11 @@ namespace GenieClient
         private void artToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Interaction.Shell("explorer.exe " + m_oGlobals.Config.ArtDir, AppWinStyle.NormalFocus, false);
+        }
+
+        private void soundsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Interaction.Shell("explorer.exe " + m_oGlobals.Config.SoundDir, AppWinStyle.NormalFocus, false);
         }
 
         private void toolStripMenuItemClassicConnect_Click(global::System.Object sender, global::System.EventArgs e)
