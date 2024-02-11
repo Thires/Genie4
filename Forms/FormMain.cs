@@ -3758,7 +3758,7 @@ namespace GenieClient
                     oForm.RichTextBoxOutput.ForeColor = Genie.ColorCode.StringToColor(sColorName);
                 }
             }
-
+            // Hide/Show scrollbars changes all the following to true so can change the state in the windows window, can't do game window there
             switch (sID)
             {
                 case "inv":
