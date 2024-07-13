@@ -611,15 +611,7 @@ namespace GenieClient
         private void FormSkin_Resize(object sender, EventArgs e)
         {
             SetRegion();
-            //_RichTextBoxOutput.SetScrollBars();
-            if (HideShowScrollbars) // Hide/Show scrollbars
-            {
-                this._RichTextBoxOutput.ScrollBars = RichTextBoxScrollBars.ForcedVertical;
-            }
-            else
-            {
-                this._RichTextBoxOutput.ScrollBars = RichTextBoxScrollBars.None;
-            }
+            _RichTextBoxOutput.SetScrollBars();
         }
 
         // Private Sub Resized()
@@ -677,20 +669,6 @@ namespace GenieClient
             {
                 RichTextBoxOutput.NameListOnly = value;
                 NameListOnlyToolStripMenuItem.Checked = value;
-            }
-        }
-
-        public bool HideShowScrollbars // Hide/Show scrollbars
-        {
-            get
-            {
-                return RichTextBoxOutput.HideShowScrollbars;
-            }
-
-            set
-            {
-                RichTextBoxOutput.HideShowScrollbars = value;
-                HideShowScrollbarsToolStripMenuItem.Checked = value;
             }
         }
 
@@ -765,15 +743,6 @@ namespace GenieClient
             if (!Information.IsNothing(MdiParent))
             {
                 ((FormMain)MdiParent).ActiveFormSkin = this;
-
-                /*if (HideShowScrollbars) // Hide/Show scrollbars
-                {
-                    this._RichTextBoxOutput.ScrollBars = RichTextBoxScrollBars.ForcedVertical;
-                }
-                else
-                {
-                    this._RichTextBoxOutput.ScrollBars = RichTextBoxScrollBars.None;
-                }*/
             }
         }
 
@@ -815,19 +784,6 @@ namespace GenieClient
         private void NameListOnlyToolStripMenuItem_Click(object sender, EventArgs e)
         {
             NameListOnly = !NameListOnly;
-        }
-
-        private void HideShowScrollbarsToolStripMenuItem_Click(object sender, EventArgs e) // Hide/Show scrollbars
-        {
-            HideShowScrollbars = !HideShowScrollbars;
-            if (HideShowScrollbars)
-            {
-                this._RichTextBoxOutput.ScrollBars = RichTextBoxScrollBars.ForcedVertical;
-            }
-            else
-            {
-                this._RichTextBoxOutput.ScrollBars = RichTextBoxScrollBars.None;
-            }
         }
 
         private void CloseWindowToolStripMenuItem_Click(object sender, EventArgs e)
@@ -880,15 +836,10 @@ namespace GenieClient
             this._RichTextBoxOutput.ComponentRichTextBox_MouseDown(sender, e);
         }
 
-        private void _RichTextBoxOutput_MouseWheel(object sender, MouseEventArgs e) // Hide/Show scrollbars
-        {
-            this._RichTextBoxOutput.ComponentRichTextBox_MouseWheel(sender, e);
-        }
-
-        /*private void _RichTextBoxOutput_VScroll(object sender, EventArgs e)
+        private void _RichTextBoxOutput_VScroll(object sender, EventArgs e)
         {
             this._RichTextBoxOutput.AddScrollBar();
             this._RichTextBoxOutput.VScroll -= _RichTextBoxOutput_VScroll;
-        }*/
+        }
     }
 }
