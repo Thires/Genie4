@@ -140,7 +140,6 @@ namespace GenieClient
         private Font m_MonoFont = new Font("Courier New", 9, FontStyle.Regular);
         private bool m_bTimeStamp = false;
         private bool m_bNameListOnly = false;
-        private bool m_bHideShowScrollbars = false; // Hide/Show scrollbars
         private int m_iMaxBufferSize = 500000;
         private bool m_bIsMainWindow = false;
        
@@ -196,19 +195,6 @@ namespace GenieClient
             }
         }
 
-        public bool HideShowScrollbars // Hide/Show scrollbars
-        {
-            get
-            {
-                return m_bHideShowScrollbars;
-            }
-
-            set
-            {
-                m_bHideShowScrollbars = value;
-            }
-        }
-
         private string GetTimeString(string sText)
         {
             if (m_bTimeStamp == true)
@@ -217,11 +203,11 @@ namespace GenieClient
                 {
                     if (sText.StartsWith(" "))
                     {
-                        return "[" + Strings.FormatDateTime(DateAndTime.Now, DateFormat.LongTime) + "]";
+                        return "[" + Strings.FormatDateTime(DateAndTime.Now, DateFormat.ShortTime) + "]";
                     }
                     else
                     {
-                        return "[" + Strings.FormatDateTime(DateAndTime.Now, DateFormat.LongTime) + "] ";
+                        return "[" + Strings.FormatDateTime(DateAndTime.Now, DateFormat.ShortTime) + "] ";
                     }
                 }
             }
@@ -357,20 +343,47 @@ namespace GenieClient
                 InvokeEndUpdate();
             }
         }
-        public void AddImage(Image image)
+
+        private List<Tuple<int, string, string, Size>> imagePositions = new List<Tuple<int, string, string, Size>>();
+        private PictureBox hoverPictureBox;
+
+        public ComponentRichTextBox()
+        {
+            InitializeComponent();
+        }
+
+        private void InitializeComponent()
+        {
+            this.MouseMove += ComponentRichTextBox_MouseMove;
+            this.MouseLeave += ComponentRichTextBox_MouseLeave;
+            hoverPictureBox = new PictureBox
+            {
+                SizeMode = PictureBoxSizeMode.AutoSize,
+                Visible = false,
+                BackColor = Color.Transparent // Ensure the PictureBox does not cover text
+            };
+            this.Controls.Add(hoverPictureBox);
+        }
+
+        public void AddImage(Image image, string thumbnailPath, string fullPath)
         {
             if (IsDisposed || image == null)
             {
                 return;
             }
-            if (InvokeRequired == true)
+            if (InvokeRequired)
             {
-                var parameters = new object[] { image };
-                Invoke(new AddImageDelegate(InvokeAddImage), parameters);
+                var parameters = new object[] { image, thumbnailPath, fullPath };
+                Invoke(new Action<Image, string, string>(AddImage), parameters);
             }
             else
             {
+                int charIndex = this.TextLength;
                 InvokeAddImage(image);
+                this.AppendText(" ");
+                Size imageSize = image.Size;
+                imagePositions.Add(new Tuple<int, string, string, Size>(charIndex, thumbnailPath, fullPath, imageSize));
+
             }
         }
 
@@ -386,6 +399,7 @@ namespace GenieClient
             Clipboard.Clear();
             Clipboard.SetDataObject(obj);
         }
+
         public void TryInvalidate()
         {
             if (m_oRichTextBuffer.TextLength == 0)
@@ -395,6 +409,38 @@ namespace GenieClient
                 
             }
         }
+
+        private void ComponentRichTextBox_MouseMove(object sender, MouseEventArgs e)
+        {
+            Point mousePosition = e.Location;
+
+            foreach (var imgPos in imagePositions)
+            {
+                Rectangle imageRect = GetImageRectangle(imgPos.Item1, imgPos.Item4);
+                if (imageRect.Contains(mousePosition))
+                {
+                    Image fullImage = Image.FromFile(imgPos.Item3);
+                    Point position = new Point(imageRect.X, imageRect.Bottom - fullImage.Height);
+                    hoverPictureBox.Image = fullImage;
+                    hoverPictureBox.Location = position;
+                    hoverPictureBox.Visible = true;
+                    return;
+                }
+            }
+
+            hoverPictureBox.Visible = false;
+        }
+        private Rectangle GetImageRectangle(int charIndex, Size imageSize)
+        {
+            Point position = this.GetPositionFromCharIndex(charIndex);
+            return new Rectangle(position, imageSize);
+        }
+
+        private void ComponentRichTextBox_MouseLeave(object sender, EventArgs e)
+        {
+            hoverPictureBox.Visible = false;
+        }
+
         public void AddText(string sText, Color oColor, Color oBgColor, bool bNoCache = true, bool bMono = false)
         {
             if (IsDisposed)
@@ -928,34 +974,6 @@ namespace GenieClient
             e.Handled = true;
         }
 
-        // Hide/Show scrollbars
-        [DllImport("User32.dll", SetLastError = true, CharSet = CharSet.Auto)]
-        public static extern int SendMessage(IntPtr hWnd, uint msg, int wParam, IntPtr lParam);
-
-        private const uint WM_VSCROLL = 0x115;
-        private const uint SB_LINEUP = 0;
-        private const uint SB_LINEDOWN = 1;
-
-        public static uint MakeWord(byte low, byte high)
-        {
-            return ((uint)high << 8) | low;
-        }
-
-        public void ComponentRichTextBox_MouseWheel(object sender, MouseEventArgs e)
-        {
-            int bLines = e.Delta * SystemInformation.MouseWheelScrollLines / 120;
-            if (bLines > 0)
-            {
-                for (int i = 0; i < bLines; i++)
-                    SendMessage(Handle, WM_VSCROLL, (int)MakeWord((byte)SB_LINEUP, 0), IntPtr.Zero);
-            }
-            else
-            {
-                for (int i = bLines; i < 0; i++)
-                    SendMessage(Handle, WM_VSCROLL, (int)MakeWord((byte)SB_LINEDOWN, 0), IntPtr.Zero);
-            }
-        }
-
         private bool m_bMouseDown = false;
 
         public void ComponentRichTextBox_MouseDown(object sender, MouseEventArgs e)
@@ -1050,13 +1068,9 @@ namespace GenieClient
             Marshal.FreeCoTaskMem(lpar);
         }
 
-        /*public void AddScrollBar()
+        public void AddScrollBar()
         {
-            if (HideShowScrollbars)
-                ScrollBars = RichTextBoxScrollBars.ForcedVertical;
-            else
-                ScrollBars = RichTextBoxScrollBars.None;
-            Invalidate();
+            ScrollBars = RichTextBoxScrollBars.ForcedVertical;
         }
 
         private void VScrollEvent(object sender, EventArgs e)
@@ -1069,7 +1083,7 @@ namespace GenieClient
         public void SetScrollBars()
         {
 
-            if (HideShowScrollbars)
+            if (Win32Utility.GetFirstLineVisible((IntPtr)Handle.ToInt32()) > 0)
             {
                 ScrollBars = RichTextBoxScrollBars.ForcedVertical;
             }
@@ -1078,6 +1092,6 @@ namespace GenieClient
                 ScrollBars = RichTextBoxScrollBars.None;
                 VScroll += VScrollEvent;
             }
-        }*/
+        }
     }
 }
