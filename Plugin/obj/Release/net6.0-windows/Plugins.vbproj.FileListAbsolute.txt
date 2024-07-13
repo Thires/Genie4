@@ -1,0 +1,8 @@
+C:\Users\Gyp\Downloads\Genie4-Dev-4-0-2-10\Plugin\bin\Release\net6.0-windows\Plugins.deps.json
+C:\Users\Gyp\Downloads\Genie4-Dev-4-0-2-10\Plugin\bin\Release\net6.0-windows\Plugins.dll
+C:\Users\Gyp\Downloads\Genie4-Dev-4-0-2-10\Plugin\obj\Release\net6.0-windows\Plugins.vbproj.AssemblyReference.cache
+C:\Users\Gyp\Downloads\Genie4-Dev-4-0-2-10\Plugin\obj\Release\net6.0-windows\Plugins.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Gyp\Downloads\Genie4-Dev-4-0-2-10\Plugin\obj\Release\net6.0-windows\Plugins.vbproj.CoreCompileInputs.cache
+C:\Users\Gyp\Downloads\Genie4-Dev-4-0-2-10\Plugin\obj\Release\net6.0-windows\Plugins.dll
+C:\Users\Gyp\Downloads\Genie4-Dev-4-0-2-10\Plugin\obj\Release\net6.0-windows\refint\Plugins.dll
+C:\Users\Gyp\Downloads\Genie4-Dev-4-0-2-10\Plugin\obj\Release\net6.0-windows\ref\Plugins.dll

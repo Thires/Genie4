@@ -1343,10 +1343,25 @@ namespace GenieClient.Genie
                             var attribute = GetAttributeData(oXmlNode, "picture");
                             if (!string.IsNullOrEmpty(attribute) && attribute != "0")
                             {
-                                attribute += ".jpg";
                                 string gamecode = "DR"; //default DR
                                 if (AccountGame.StartsWith("GS")) gamecode = "GS";
-                                if (FileHandler.FetchImage(attribute, m_oGlobals.Config.ArtDir, gamecode).Result) AddImage(Path.Combine(gamecode, attribute), "portrait");
+
+                                string thumbnailAttribute = attribute + "_t.jpg";
+                                string fullsizeAttribute = attribute + ".jpg";
+
+                                // Fetch both images
+                                bool fetchedThumbnail = FileHandler.FetchImage(thumbnailAttribute, m_oGlobals.Config.ArtDir, gamecode).Result;
+                                bool fetchedFullsize = FileHandler.FetchImage(fullsizeAttribute, m_oGlobals.Config.ArtDir, gamecode).Result;
+
+                                // If both images are fetched successfully
+                                if (fetchedThumbnail && fetchedFullsize)
+                                {
+                                    // Send fullsize image to portrait window
+                                    AddImage(Path.Combine(m_oGlobals.Config.ArtDir, gamecode, fullsizeAttribute), "portrait");
+
+                                    // Send thumbnail image to main window
+                                    AddImage(Path.Combine(m_oGlobals.Config.ArtDir, gamecode, thumbnailAttribute), "main");
+                                }
                             }
                             break;
                         }
@@ -3191,7 +3206,7 @@ namespace GenieClient.Genie
                         m_iConnectAttempts = 0;
                         m_bManualDisconnect = false;
                         m_oReconnectTime = default;
-                        m_oSocket.Send(m_sConnectKey + Constants.vbLf + "FE:WRAYTH /VERSION:1.0.1.28 /P:WIN_UNKNOWN /XML" + Constants.vbLf);    // TEMP
+                        m_oSocket.Send(m_sConnectKey + Constants.vbLf + "FE:WRAYTH /VERSION:1.0.1.22 /P:WIN_UNKNOWN /XML" + Constants.vbLf);    // TEMP
                         string argkey = "connected";
                         m_oGlobals.VariableList["connected"] = m_oSocket.IsConnected ? "1" : "0";
                         VariableChanged("$connected");
