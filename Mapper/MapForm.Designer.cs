@@ -456,15 +456,41 @@ namespace GenieClient.Mapper
             // 
             // _ToolStripMaps
             // 
-            this._ToolStripMaps.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
             this._ToolStripMaps.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this._ToolStripStatusText,
             this._ToolStripDropDownButtonMaps,
-            this._ToolStripButtonReload});
+            this._ToolStripButtonReload,
+            this._ToolStripButtonClear,
+            this._ToolStripButtonLoad,
+            this._ToolStripButtonSave,
+            this._ToolStripSeparator1,
+            this._ToolStripButtonWalk,
+            this._ToolStripSeparator3,
+            this._ToolStripButtonSnap,
+            this._ToolStripButtonProperties,
+            this._ToolStripSeparator4,
+            this._ToolStripButtonRecord,
+            this._ToolStripButtonLockPositions,
+            this._ToolStripButtonAllowDuplicates,
+            this._ToolStripSeparator5,
+            this._ToolStripButtonMoveNodes,
+            this._ToolStripButtonRemove,
+            this._ToolStripSeparator2,
+            this._ToolStripButtonFixID,
+            this._ToolStripButtonDock,
+            this._ToolStripSeparator7,
+            this._ToolStripButtonZoomOut,
+            this._ToolStripButtonZoomIn,
+            this._ToolStripSeparator6,
+            this._ToolStripButtonDown,
+            this._ToolStripButtonUp,
+            this._ToolStripLabelZ});
             this._ToolStripMaps.Location = new System.Drawing.Point(0, 25);
             this._ToolStripMaps.Name = "_ToolStripMaps";
             this._ToolStripMaps.Size = new System.Drawing.Size(1299, 25);
             this._ToolStripMaps.TabIndex = 20;
             this._ToolStripMaps.Text = "ToolStripMaps";
+            this._ToolStripMaps.Dock = DockStyle.Bottom;
             // 
             // _ToolStripDropDownButtonMaps
             // 
@@ -501,9 +527,9 @@ namespace GenieClient.Mapper
             this.ClientSize = new System.Drawing.Size(1299, 612);
             this.Controls.Add(this._PanelBase);
             this.Controls.Add(this._PanelDetails);
-            this.Controls.Add(this._StatusStripMain);
+            //this.Controls.Add(this._StatusStripMain);
             this.Controls.Add(this._ToolStripMaps);
-            this.Controls.Add(this._ToolStripMain);
+            //this.Controls.Add(this._ToolStripMain);
             this.DoubleBuffered = true;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.KeyPreview = true;

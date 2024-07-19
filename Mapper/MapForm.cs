@@ -916,7 +916,8 @@ namespace GenieClient.Mapper
 
             try
             {
-                var xw = new XmlTextWriter(sPath, System.Text.Encoding.Unicode);
+                //var xw = new XmlTextWriter(sPath, System.Text.Encoding.Unicode);
+                var xw = new XmlTextWriter(sPath, System.Text.Encoding.UTF8);
                 xw.Formatting = Formatting.Indented;
                 xw.WriteStartDocument();
                 xw.WriteStartElement("zone");
@@ -1661,7 +1662,6 @@ namespace GenieClient.Mapper
                         var oColorRoom = n.Color;
                         if (n.Color == Color.Transparent) { oColorRoom = m_oGlobals.PresetList["automapper.node"].FgColor; }
                         else oColorRoom = Color.FromArgb(m_oGlobals.Config.AutoMapperAlpha, n.Color.R, n.Color.G, n.Color.B);
-
                         var oColorRoomBorder = m_oGlobals.PresetList["automapper.nodeborder"].FgColor;
                         var oColorHere = m_oGlobals.PresetList["automapper.heredot"].FgColor;
                         if (n.Position.Z != m_CurrentLevelZ) // Mark all other levels gray
