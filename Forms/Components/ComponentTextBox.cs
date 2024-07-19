@@ -94,13 +94,13 @@ namespace GenieClient
                     return;
                 }
 
-                if (Conversions.ToBoolean(!Operators.ConditionalCompareObjectEqual(HistoryArray[0], Text, false)))
+                if (!Operators.ConditionalCompareObjectEqual(HistoryArray[0], Text, false))
                 {
                     Tag = Text;
                     HistoryPos = 0;
                     Text = Conversions.ToString(HistoryArray[0]);
                 }
-                else if (HistoryArray.Count >= 0) // Skip (0) since text is same
+                else if (HistoryArray.Count > 1) // Ensure there is more than one item
                 {
                     Tag = Text;
                     HistoryPos = 1;
@@ -109,8 +109,11 @@ namespace GenieClient
             }
             else if (HistoryPos < HistoryArray.Count - 1) // Within range
             {
-                HistoryPos = HistoryPos + 1;
-                Text = Conversions.ToString(HistoryArray[HistoryPos]);
+                HistoryPos++;
+                if (HistoryPos >= 0 && HistoryPos < HistoryArray.Count)
+                {
+                    Text = Conversions.ToString(HistoryArray[HistoryPos]);
+                }
             }
 
             SelectionLength = 0;
