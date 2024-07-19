@@ -49,7 +49,8 @@ namespace GenieClient
                 li.SubItems.Add(Genie.ColorCode.ColorToString(m_FormMain.OutputMain.RichTextBoxOutput.ForeColor, m_FormMain.OutputMain.RichTextBoxOutput.BackColor));
                 li.SubItems.Add(m_FormMain.OutputMain.TimeStamp.ToString());
                 li.SubItems.Add(m_FormMain.OutputMain.NameListOnly.ToString());
-                li.SubItems.Add(m_FormMain.OutputMain.HideShowScrollbars.ToString()); // Hide/Show scrollbars
+                li.SubItems.Add(m_FormMain.OutputMain.HideShowScrollbar.ToString()); // Hide/Show scrollbar
+                li.SubItems.Add(m_FormMain.OutputMain.HideShowTitleBar.ToString()); // Hide/Show titlebar
                 li.Tag = m_FormMain.OutputMain;
                 var myEnumerator = m_FormMain.FormList.GetEnumerator();
                 FormSkin tmpFormSkin;
@@ -61,7 +62,8 @@ namespace GenieClient
                     li.SubItems.Add(Genie.ColorCode.ColorToString(tmpFormSkin.RichTextBoxOutput.ForeColor, tmpFormSkin.RichTextBoxOutput.BackColor));
                     li.SubItems.Add(tmpFormSkin.TimeStamp.ToString());
                     li.SubItems.Add(tmpFormSkin.NameListOnly.ToString());
-                    li.SubItems.Add(tmpFormSkin.HideShowScrollbars.ToString()); // Hide/Show scrollbars
+                    li.SubItems.Add(tmpFormSkin.HideShowScrollbar.ToString()); // Hide/Show scrollbar
+                    li.SubItems.Add(tmpFormSkin.HideShowTitleBar.ToString()); // Hide/Show titlebar
                     li.Tag = tmpFormSkin;
                 }
             }
@@ -70,12 +72,13 @@ namespace GenieClient
         private void ResetList()
         {
             ListViewBase.Clear();
-            ListViewBase.Columns.Add("Title", 150, HorizontalAlignment.Left);
-            ListViewBase.Columns.Add("Font", 150, HorizontalAlignment.Left);
+            ListViewBase.Columns.Add("Title", 135, HorizontalAlignment.Left);
+            ListViewBase.Columns.Add("Font", 140, HorizontalAlignment.Left);
             ListViewBase.Columns.Add("Colors", 150, HorizontalAlignment.Left);
             ListViewBase.Columns.Add("Time Stamp", 75, HorizontalAlignment.Left);
-            ListViewBase.Columns.Add("Name List Only", 75, HorizontalAlignment.Left);
-            ListViewBase.Columns.Add("Show Scrollbars", 95, HorizontalAlignment.Left); // Hide/Show scrollbars
+            ListViewBase.Columns.Add("Name List", 70, HorizontalAlignment.Left);
+            ListViewBase.Columns.Add("Show Scrollbar", 90, HorizontalAlignment.Left); // Hide/Show scrollbar
+            ListViewBase.Columns.Add("Hide Titlebar", 90, HorizontalAlignment.Left); // Hide/Show titlebar
         }
 
         private void ListViewBase_SortColumnClick(object sender, ColumnClickEventArgs e)
@@ -217,7 +220,8 @@ namespace GenieClient
 
                     TextBoxTitle.Text = ListViewBase.SelectedItems[0].Text;
                     CheckBoxTimeStamp.Enabled = true;
-                    CheckBoxHideShowScrollbars.Enabled = true; // Hide/Show scrollbars
+                    CheckBoxHideShowScrollbar.Enabled = true; // Hide/Show scrollbar
+                    CheckBoxHideShowTitleBar.Enabled = true; // Hide/Show titlebar
                     CheckBoxNameListOnly.Enabled = true;
                     TextBoxColor.Enabled = true;
                     TextBoxColor.Text = ListViewBase.SelectedItems[0].SubItems[2].Text;
@@ -227,7 +231,8 @@ namespace GenieClient
                     TextBoxFont.Tag = fo.TextFont;
                     CheckBoxTimeStamp.Checked = fo.TimeStamp;
                     CheckBoxNameListOnly.Checked = fo.NameListOnly;
-                    CheckBoxHideShowScrollbars.Checked = fo.HideShowScrollbars; // Hide/Show scrollbars
+                    CheckBoxHideShowScrollbar.Checked = fo.HideShowScrollbar; // Hide/Show scrollbar
+                    CheckBoxHideShowTitleBar.Checked = fo.HideShowTitleBar; // Hide/Show titlebar
                     GroupBoxBase.Enabled = true;
                     GroupBoxBase.Tag = new ArrayList(ListViewBase.SelectedItems);
                     ToolStripButtonRemove.Enabled = true;
@@ -237,13 +242,15 @@ namespace GenieClient
             else if (ListViewBase.SelectedItems.Count > 1) // Can only edit properties that are same for all
             {
                 TextBoxTitle.Text = "";
+                TextBoxTitle.Visible = false;
                 TextBoxTitle.Enabled = false;
                 TextBoxColor.Enabled = true;
                 CheckBoxTimeStamp.Checked = false;
                 CheckBoxNameListOnly.Checked = false;
                 CheckBoxTimeStamp.Enabled = false;
                 CheckBoxNameListOnly.Enabled = false;
-                CheckBoxHideShowScrollbars.Enabled = false; // Hide/Show scrollbars
+                CheckBoxHideShowScrollbar.Enabled = false; // Hide/Show scrollbar
+                CheckBoxHideShowTitleBar.Enabled = false; // Hide/Show titlebar
                 GroupBoxBase.Tag = new ArrayList(ListViewBase.SelectedItems);
                 ToolStripButtonRemove.Enabled = true;
                 RemoveToolStripMenuItem.Enabled = true;
@@ -266,7 +273,8 @@ namespace GenieClient
             LabelExampleColor.BackColor = Color.Black;
             CheckBoxTimeStamp.Checked = false;
             CheckBoxNameListOnly.Checked = false;
-            CheckBoxHideShowScrollbars.Checked = false; // Hide/Show scrollbars
+            CheckBoxHideShowScrollbar.Checked = false; // Hide/Show scrollbar
+            CheckBoxHideShowTitleBar.Checked = false; // Hide/Show titlebar
             GroupBoxBase.Enabled = false;
             GroupBoxBase.Tag = null;
             ToolStripButtonRemove.Enabled = false;
@@ -277,6 +285,20 @@ namespace GenieClient
         {
             m_ItemChanged = true;
         }
+
+
+        private void ToggleTitleBar(FormSkin form)
+        {
+            if (form == null)
+                return;
+
+            form.AdjustRichTextBoxHeight();
+            form.SetRegion();
+            form.LoadSkin();
+            form.Invalidate(true);
+            form.Refresh();
+        }
+
 
         public bool ApplyChanges()
         {
@@ -293,10 +315,12 @@ namespace GenieClient
                             fo.Text = TextBoxTitle.Text;
                             fo.TimeStamp = CheckBoxTimeStamp.Checked;
                             fo.NameListOnly = CheckBoxNameListOnly.Checked;
-                            fo.HideShowScrollbars = CheckBoxHideShowScrollbars.Checked; // Hide/Show scrollbars
+                            fo.HideShowScrollbar = CheckBoxHideShowScrollbar.Checked; // Hide/Show scrollbar
+                            fo.HideShowTitleBar = CheckBoxHideShowTitleBar.Checked; // Hide/Show titlebar
                             li.SubItems[3].Text = CheckBoxTimeStamp.Checked.ToString();
                             li.SubItems[4].Text = CheckBoxNameListOnly.Checked.ToString();
-                            li.SubItems[5].Text = CheckBoxHideShowScrollbars.Checked.ToString(); // Hide/Show scrollbars
+                            li.SubItems[5].Text = CheckBoxHideShowScrollbar.Checked.ToString(); // Hide/Show scrollbar
+                            li.SubItems[6].Text = CheckBoxHideShowTitleBar.Checked.ToString(); // Hide/Show titlebar
                         }
 
                         if (!Information.IsNothing(TextBoxFont.Tag))
@@ -325,10 +349,12 @@ namespace GenieClient
                             }
                         }
 
-                        if (fo.RichTextBoxOutput.HideShowScrollbars) // Hide/Show scrollbars
+                        if (fo.RichTextBoxOutput.HideShowScrollbar) // Hide/Show scrollbar
                             fo.RichTextBoxOutput.ScrollBars = RichTextBoxScrollBars.ForcedVertical;
                         else
                             fo.RichTextBoxOutput.ScrollBars = RichTextBoxScrollBars.None;
+
+                        ToggleTitleBar(fo);
 
                         if (ComboBoxIfClosed.Enabled)
                         {
@@ -367,13 +393,15 @@ namespace GenieClient
                 {
                     fo.TimeStamp = CheckBoxTimeStamp.Checked;
                     fo.NameListOnly = CheckBoxNameListOnly.Checked;
-                    fo.HideShowScrollbars = CheckBoxHideShowScrollbars.Checked; // Hide/Show scrollbars
+                    fo.HideShowScrollbar = CheckBoxHideShowScrollbar.Checked; // Hide/Show scrollbar
+                    fo.HideShowTitleBar = CheckBoxHideShowTitleBar.Checked; // Hide/Show titlebar
                     var li = ListViewBase.Items.Add(TextBoxTitle.Text);
                     li.SubItems.Add(GetFontName(fo.RichTextBoxOutput.Font));
                     li.SubItems.Add(Genie.ColorCode.ColorToString(fo.RichTextBoxOutput.ForeColor, fo.RichTextBoxOutput.BackColor));
                     li.SubItems.Add(fo.TimeStamp.ToString());
                     li.SubItems.Add(fo.NameListOnly.ToString());
-                    li.SubItems.Add(fo.HideShowScrollbars.ToString()); // Hide/Show scrollbars
+                    li.SubItems.Add(fo.HideShowScrollbar.ToString()); // Hide/Show scrollbar
+                    li.SubItems.Add(fo.HideShowTitleBar.ToString()); // Hide/Show titlebar
                     li.Tag = fo;
                     li.Selected = true;
                     ToolStripButtonRemove.Enabled = true;
@@ -381,6 +409,7 @@ namespace GenieClient
                     GroupBoxBase.Tag = new ArrayList(ListViewBase.SelectedItems);
                     m_FormMain.UpdateWindowMenuList();
                     fo.Visible = true;
+                    ToggleTitleBar(fo);
                 }
             }
 
@@ -439,7 +468,8 @@ namespace GenieClient
             TextBoxFont.Tag = null;
             CheckBoxTimeStamp.Checked = false;
             CheckBoxNameListOnly.Checked = false;
-            CheckBoxHideShowScrollbars.Checked = false; // Hide/Show scrollbars
+            CheckBoxHideShowScrollbar.Checked = false; // Hide/Show scrollbar
+            CheckBoxHideShowTitleBar.Checked = false; // Hide/Show titlebar
             TextBoxTitle.Focus();
         }
 
@@ -494,7 +524,12 @@ namespace GenieClient
             m_ItemChanged = true;
         }
 
-        private void CheckBoxHideShowScrollbars_CheckedChanged(object sender, EventArgs e) // Hide/Show scrollbars
+        private void CheckBoxHideShowScrollbar_CheckedChanged(object sender, EventArgs e) // Hide/Show scrollbar
+        {
+            m_ItemChanged = true;
+        }
+
+        private void CheckBoxHideShowTitleBar_CheckedChanged(object sender, EventArgs e) // Hide/Show titlebar
         {
             m_ItemChanged = true;
         }

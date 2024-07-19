@@ -60,7 +60,8 @@ namespace GenieClient
             _TextBoxColor = new TextBox();
             _CheckBoxNameListOnly = new CheckBox();
             _CheckBoxTimeStamp = new CheckBox();
-            _CheckBoxHideShowScrollbars = new CheckBox();
+            _CheckBoxHideShowScrollbar = new CheckBox();
+            _CheckBoxHideShowTitleBar = new CheckBox();
             _ButtonFont = new Button();
             _LabelFont = new Label();
             _TextBoxFont = new TextBox();
@@ -209,7 +210,8 @@ namespace GenieClient
             _GroupBoxBase.Controls.Add(_TextBoxColor);
             _GroupBoxBase.Controls.Add(_CheckBoxNameListOnly);
             _GroupBoxBase.Controls.Add(_CheckBoxTimeStamp);
-            _GroupBoxBase.Controls.Add(_CheckBoxHideShowScrollbars);
+            _GroupBoxBase.Controls.Add(_CheckBoxHideShowScrollbar);
+            _GroupBoxBase.Controls.Add(_CheckBoxHideShowTitleBar);
             _GroupBoxBase.Controls.Add(_ButtonFont);
             _GroupBoxBase.Controls.Add(_LabelFont);
             _GroupBoxBase.Controls.Add(_TextBoxFont);
@@ -322,22 +324,34 @@ namespace GenieClient
             _CheckBoxTimeStamp.Margin = new Padding(4, 3, 4, 3);
             _CheckBoxTimeStamp.Name = "_CheckBoxTimeStamp";
             _CheckBoxTimeStamp.Size = new Size(135, 19);
-            _CheckBoxTimeStamp.TabIndex = 12;
+            _CheckBoxTimeStamp.TabIndex = 11;
             _CheckBoxTimeStamp.Text = "Time Stamp Output?";
             _CheckBoxTimeStamp.UseVisualStyleBackColor = true;
             _CheckBoxTimeStamp.CheckedChanged += CheckBoxTimeStamp_CheckedChanged;
             // 
-            // _CheckBoxHideShowScrollbars
+            // _CheckBoxHideShowScrollbar
             // 
-            _CheckBoxHideShowScrollbars.AutoSize = true;
-            _CheckBoxHideShowScrollbars.Location = new Point(307, 112);
-            _CheckBoxHideShowScrollbars.Margin = new Padding(4, 3, 4, 3);
-            _CheckBoxHideShowScrollbars.Name = "_CheckBoxHideShowScrollbars";
-            _CheckBoxHideShowScrollbars.Size = new Size(114, 19);
-            _CheckBoxHideShowScrollbars.TabIndex = 12;
-            _CheckBoxHideShowScrollbars.Text = "Show Scrollbars?";
-            _CheckBoxHideShowScrollbars.UseVisualStyleBackColor = true;
-            _CheckBoxHideShowScrollbars.CheckedChanged += CheckBoxHideShowScrollbars_CheckedChanged;
+            _CheckBoxHideShowScrollbar.AutoSize = true;
+            _CheckBoxHideShowScrollbar.Location = new Point(307, 112);
+            _CheckBoxHideShowScrollbar.Margin = new Padding(4, 3, 4, 3);
+            _CheckBoxHideShowScrollbar.Name = "_CheckBoxHideShowScrollbar";
+            _CheckBoxHideShowScrollbar.Size = new Size(114, 19);
+            _CheckBoxHideShowScrollbar.TabIndex = 12;
+            _CheckBoxHideShowScrollbar.Text = "Show Scrollbar?";
+            _CheckBoxHideShowScrollbar.UseVisualStyleBackColor = true;
+            _CheckBoxHideShowScrollbar.CheckedChanged += CheckBoxHideShowScrollbar_CheckedChanged;
+            // 
+            // _CheckBoxHideShowTitleBar
+            // 
+            _CheckBoxHideShowTitleBar.AutoSize = true;
+            _CheckBoxHideShowTitleBar.Location = new Point(440, 112);
+            _CheckBoxHideShowTitleBar.Margin = new Padding(4, 3, 4, 3);
+            _CheckBoxHideShowTitleBar.Name = "_CheckBoxHideShowTitleBar";
+            _CheckBoxHideShowTitleBar.Size = new Size(98, 19);
+            _CheckBoxHideShowTitleBar.TabIndex = 21;
+            _CheckBoxHideShowTitleBar.Text = "Hide TitleBar?";
+            _CheckBoxHideShowTitleBar.UseVisualStyleBackColor = true;
+            _CheckBoxHideShowTitleBar.CheckedChanged += CheckBoxHideShowTitleBar_CheckedChanged;
             // 
             // _ButtonFont
             // 
@@ -904,31 +918,58 @@ namespace GenieClient
             }
         }
 
-        private CheckBox _CheckBoxHideShowScrollbars; // Hide/Show scrollbars
+        private CheckBox _CheckBoxHideShowScrollbar; // Hide/Show scrollbar
 
-        internal CheckBox CheckBoxHideShowScrollbars
+        internal CheckBox CheckBoxHideShowScrollbar
         {
             [MethodImpl(MethodImplOptions.Synchronized)]
             get
             {
-                return _CheckBoxHideShowScrollbars;
+                return _CheckBoxHideShowScrollbar;
             }
 
             [MethodImpl(MethodImplOptions.Synchronized)]
             set
             {
-                if (_CheckBoxHideShowScrollbars != null)
+                if (_CheckBoxHideShowScrollbar != null)
                 {
-                    _CheckBoxHideShowScrollbars.CheckedChanged -= CheckBoxHideShowScrollbars_CheckedChanged;
+                    _CheckBoxHideShowScrollbar.CheckedChanged -= CheckBoxHideShowScrollbar_CheckedChanged;
                 }
 
-                _CheckBoxHideShowScrollbars = value;
-                if (_CheckBoxHideShowScrollbars != null)
+                _CheckBoxHideShowScrollbar = value;
+                if (_CheckBoxHideShowScrollbar != null)
                 {
-                    _CheckBoxHideShowScrollbars.CheckedChanged += CheckBoxHideShowScrollbars_CheckedChanged;
+                    _CheckBoxHideShowScrollbar.CheckedChanged += CheckBoxHideShowScrollbar_CheckedChanged;
                 }
             }
         }
+
+        private CheckBox _CheckBoxHideShowTitleBar;
+
+        internal CheckBox CheckBoxHideShowTitleBar
+        {
+            [MethodImpl(MethodImplOptions.Synchronized)]
+            get
+            {
+                return _CheckBoxHideShowTitleBar;
+            }
+
+            [MethodImpl(MethodImplOptions.Synchronized)]
+            set
+            {
+                if (_CheckBoxHideShowTitleBar != null)
+                {
+                    _CheckBoxHideShowTitleBar.CheckedChanged -= CheckBoxHideShowTitleBar_CheckedChanged;
+                }
+
+                _CheckBoxHideShowTitleBar = value;
+                if (_CheckBoxHideShowTitleBar != null)
+                {
+                    _CheckBoxHideShowTitleBar.CheckedChanged += CheckBoxHideShowTitleBar_CheckedChanged;
+                }
+            }
+        }
+
 
         private Button _ButtonColorBg;
 
