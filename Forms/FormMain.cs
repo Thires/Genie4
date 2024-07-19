@@ -16,6 +16,7 @@ using GenieClient.Forms;
 using GenieClient.Genie;
 using Microsoft.VisualBasic;
 using Microsoft.VisualBasic.CompilerServices;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace GenieClient
 {
@@ -125,7 +126,7 @@ namespace GenieClient
             IconBar.Globals = m_oGlobals;
             m_oOutputMain.MdiParent = this;
             m_oOutputMain.IsMainWindow = true;
-            m_oOutputMain.UserForm = false; // Not an editable window
+            m_oOutputMain.UserForm = true; // Not an editable window // made true so can hide/show scrollbar/titlebar
 
             // Make sure decimal separator is always "." (For script compability and such)
             if ((Thread.CurrentThread.CurrentCulture.NumberFormat.NumberDecimalSeparator ?? "") != ".")
@@ -1966,6 +1967,8 @@ namespace GenieClient
         {
             /* TODO ERROR: Skipped IfDirectiveTrivia */
             Application.ThreadException += Application_ThreadException;
+            AppDomain.CurrentDomain.UnhandledException += new UnhandledExceptionEventHandler(CurrentDomain_UnhandledException);
+
             /* TODO ERROR: Skipped EndIfDirectiveTrivia */
             // AddHandler SystemEvents.DisplaySettingsChanged, AddressOf FormMain_SizeChange
 
@@ -2081,6 +2084,8 @@ namespace GenieClient
 
             // m_oGame.ParseGameRow("*** <pushBold/>BLAH<popBold/> ***")
             m_oOutputMain.RichTextBoxOutput.EndTextUpdate();
+
+
 
             // TEMP TEMP TEMP
             // m_PluginDialog.ShowDialog(Me)
@@ -2260,8 +2265,11 @@ namespace GenieClient
                     I = 0;
                 }
 
-                bool bHideShowScrollbars = m_oConfig.GetValue("Genie/Windows/Game", "HideShowScrollbars", false); // Hide/Show scrollbars
-                m_oOutputMain.HideShowScrollbars = bHideShowScrollbars;
+                bool bHideShowScrollbar = m_oConfig.GetValue("Genie/Windows/Game", "HideShowScrollbar", false); // Hide/Show scrollbar
+                m_oOutputMain.HideShowScrollbar = bHideShowScrollbar;
+
+                bool bHideShowTitleBar = m_oConfig.GetValue("Genie/Windows/Game", "HideShowTitleBar", false); // Hide/Show titlebar
+                m_oOutputMain.HideShowTitleBar = bHideShowTitleBar;
 
                 bool bTimeStamp = m_oConfig.GetValue("Genie/Windows/Game", "TimeStamp", false);
                 m_oOutputMain.TimeStamp = bTimeStamp;
@@ -2342,7 +2350,8 @@ namespace GenieClient
                         sColorName = m_oConfig.GetValue("Genie/Windows/Window" + j.ToString(), "Colors", string.Empty);
                         bTimeStamp = m_oConfig.GetValue("Genie/Windows/Window" + j.ToString(), "TimeStamp", false);
                         bNameListOnly = m_oConfig.GetValue("Genie/Windows/Window" + j.ToString(), "NameListOnly", false);
-                        bHideShowScrollbars = m_oConfig.GetValue("Genie/Windows/Window" + j.ToString(), "HideShowScrollbars", false); // Hide/Show scrollbars
+                        bHideShowScrollbar = m_oConfig.GetValue("Genie/Windows/Window" + j.ToString(), "HideShowScrollbar", false); // Hide/Show scrollbar
+                        bHideShowTitleBar = m_oConfig.GetValue("Genie/Windows/Window" + j.ToString(), "HideShowTitleBar", false); // Hide/Show titlebar
                         FormSkin oFormTemp = null;
                         sFontFamily = m_oConfig.GetValue("Genie/Windows/Window" + j.ToString() + "/Font", "Family", string.Empty);
                         if (sFontFamily.Length > 0)
@@ -2361,7 +2370,8 @@ namespace GenieClient
                         {
                             oFormTemp.TimeStamp = bTimeStamp;
                             oFormTemp.NameListOnly = bNameListOnly;
-                            oFormTemp.HideShowScrollbars = bHideShowScrollbars; // Hide/Show scrollbars
+                            oFormTemp.HideShowScrollbar = bHideShowScrollbar; // Hide/Show scrollbar
+                            oFormTemp.HideShowTitleBar = bHideShowTitleBar; // Hide/Show titlebar
                         }
                     }
                 }
@@ -2465,7 +2475,8 @@ namespace GenieClient
             m_oConfig.SetValue("Genie/Windows/Game", "TimeStamp", m_oOutputMain.TimeStamp.ToString());
             m_oConfig.SetValue("Genie/Windows/Game", "Colors", Genie.ColorCode.ColorToString(m_oOutputMain.RichTextBoxOutput.ForeColor, m_oOutputMain.RichTextBoxOutput.BackColor));
             m_oConfig.SetValue("Genie/Windows/Game", "NameListOnly", m_oOutputMain.NameListOnly.ToString());
-            m_oConfig.SetValue("Genie/Windows/Game", "HideShowScrollbars", m_oOutputMain.HideShowScrollbars.ToString()); // Hide/Show scrollbars
+            m_oConfig.SetValue("Genie/Windows/Game", "HideShowScrollbar", m_oOutputMain.HideShowScrollbar.ToString()); // Hide/Show scrollbar
+            m_oConfig.SetValue("Genie/Windows/Game", "HideShowTitleBar", m_oOutputMain.HideShowTitleBar.ToString()); // Hide/Show titlebar
             m_oConfig.SetValue("Genie/Windows/Game/Font", "Family", m_oOutputMain.TextFont.Name.ToString());
             m_oConfig.SetValue("Genie/Windows/Game/Font", "Size", m_oOutputMain.TextFont.Size.ToString());
             m_oConfig.SetValue("Genie/Windows/Game/Font", "Style", m_oOutputMain.TextFont.Style.ToString());
@@ -2498,7 +2509,8 @@ namespace GenieClient
                 m_oConfig.SetValue("Genie/Windows/Window" + i.ToString(), "TimeStamp", tmpFormSkin.TimeStamp.ToString());
                 m_oConfig.SetValue("Genie/Windows/Window" + i.ToString(), "Colors", Genie.ColorCode.ColorToString(tmpFormSkin.RichTextBoxOutput.ForeColor, tmpFormSkin.RichTextBoxOutput.BackColor));
                 m_oConfig.SetValue("Genie/Windows/Window" + i.ToString(), "NameListOnly", tmpFormSkin.NameListOnly.ToString());
-                m_oConfig.SetValue("Genie/Windows/Window" + i.ToString(), "HideShowScrollbars", tmpFormSkin.HideShowScrollbars.ToString()); // Hide/Show scrollbars
+                m_oConfig.SetValue("Genie/Windows/Window" + i.ToString(), "HideShowScrollbar", tmpFormSkin.HideShowScrollbar.ToString()); // Hide/Show scrollbar
+                m_oConfig.SetValue("Genie/Windows/Window" + i.ToString(), "HideShowTitleBar", tmpFormSkin.HideShowTitleBar.ToString()); // Hide/Show titlebar
                 m_oConfig.SetValue("Genie/Windows/Window" + i.ToString() + "/Font", "Family", tmpFormSkin.TextFont.Name.ToString());
                 m_oConfig.SetValue("Genie/Windows/Window" + i.ToString() + "/Font", "Size", tmpFormSkin.TextFont.Size.ToString());
                 m_oConfig.SetValue("Genie/Windows/Window" + i.ToString() + "/Font", "Style", tmpFormSkin.TextFont.Style.ToString());
@@ -3758,7 +3770,7 @@ namespace GenieClient
                     oForm.RichTextBoxOutput.ForeColor = Genie.ColorCode.StringToColor(sColorName);
                 }
             }
-            // Hide/Show scrollbars changes all the following to true so can change the state in the windows window, can't do game window there
+            // Hide/Show scrollbar changes all the following to true so can change the state in the windows window, can't do game window there
             switch (sID)
             {
                 case "inv":
@@ -4908,7 +4920,7 @@ namespace GenieClient
 
             if (oTargetWindow.Equals(m_oOutputMain))
             {
-
+                sImageFileName = sImageFileName.Replace(".jpg", "_t.jpg");
             }
 
             if (InvokeRequired == true)
@@ -5028,8 +5040,6 @@ namespace GenieClient
             }
         }
 
-
-
         private FormSkin FindIfClosed(string IfClosed, int Depth = 0)
         {
             Depth += 1;
@@ -5070,15 +5080,24 @@ namespace GenieClient
         }
 
         public delegate void AddImageDelegate(string sImageFilePath, FormSkin oTargetWindow, int width, int height);
-        private async void InvokeAddImage(string sImageFilePath, FormSkin oTargetWindow, int width, int height)
+
+        private void InvokeAddImage(string sImageFilePath, FormSkin oTargetWindow, int width, int height)
         {
             if (!Information.IsNothing(oTargetWindow))
             {
-                Image image = await FileHandler.GetImage(Path.Combine(m_oGlobals.Config.ArtDir, sImageFilePath), width, height);
-                if (oTargetWindow == m_oOutputPortrait) m_oOutputPortrait.ClearWindow();
-                oTargetWindow.RichTextBoxOutput.AddImage(image);
+                string thumbnailPath = Path.Combine(m_oGlobals.Config.ArtDir, sImageFilePath);
+                string fullPath = thumbnailPath.Replace("_t.jpg", ".jpg");
+
+                if (oTargetWindow == m_oOutputPortrait)
+                {
+                    m_oOutputPortrait.ClearWindow();
+                }
+
+                Image thumbnailImage = Image.FromFile(thumbnailPath);
+                oTargetWindow.RichTextBoxOutput.AddImage(thumbnailImage, thumbnailPath, fullPath);
             }
         }
+
 
         public delegate void ClearWindowDelegate(FormSkin oTargetWindow);
 
@@ -5999,8 +6018,28 @@ namespace GenieClient
             }
         }
 
+        private void CurrentDomain_UnhandledException(object sender, UnhandledExceptionEventArgs e)
+        {
+            LogException("CurrenDomain", e.ExceptionObject as Exception);
+        }
+
+        private void LogException(string name, Exception ex)
+        {
+            if (ex == null) return;
+
+            string logFilePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "error_log_" + name + ".txt");
+            using (StreamWriter writer = new StreamWriter(logFilePath, true))
+            {
+                writer.WriteLine("Timestamp: " + DateTime.Now.ToString());
+                writer.WriteLine("Message: " + ex.Message);
+                writer.WriteLine("StackTrace: " + ex.StackTrace);
+                writer.WriteLine("-------------------------------------------------\n");
+            }
+        }
+
         private void Application_ThreadException(object sender, ThreadExceptionEventArgs e)
         {
+            LogException("Application", e.Exception);
             ShowDialogException("Main", e.Exception.Message, e.Exception.ToString());
         }
 
@@ -6052,6 +6091,7 @@ namespace GenieClient
             }
             else
             {
+                LogException("HandleLegacyPlugin", ex);
                 ShowDialogPluginException(plugin, section, ex);
             }
         }
@@ -6066,6 +6106,7 @@ namespace GenieClient
             else
             {
                 ShowDialogPluginException(plugin, section, ex);
+                LogException("HandlePlugin", ex);
             }
         }
 
@@ -6084,6 +6125,7 @@ namespace GenieClient
                 sbDetails.Append("----------------------------------------------");
                 sbDetails.Append(System.Environment.NewLine);
                 sbDetails.Append(ex.ToString());
+                LogException("AutoMapper", ex);
                 My.MyProject.Forms.DialogException.Show(this, sbDetails.ToString(), "There was an unexpected error in the AutoMapper. This may be due to a programming bug.");
             }
         }
@@ -7449,23 +7491,35 @@ namespace GenieClient
             {
                 sFile = m_sConfigFile;
             }
-            else if (sFile.Contains(@"\") == false)
+            else if (!sFile.Contains(@"\"))
             {
                 if (sFile.ToLower().EndsWith(".xml"))
                     return false;
                 sFile = m_oGlobals.Config.ConfigDir + @"\Layout\" + sFile;
-                if (sFile.ToLower().EndsWith(".layout") == false)
+                if (!sFile.ToLower().EndsWith(".layout"))
                 {
                     sFile += ".layout";
                 }
             }
 
-            if (LoadSizedXMLConfig(sFile) || LoadXMLConfig(sFile))
+            bool layoutLoaded = LoadSizedXMLConfig(sFile) || LoadXMLConfig(sFile);
+
+            if (layoutLoaded)
             {
                 UpdateLayoutMenu();
                 HideOutputForms();
                 ShowOutputForms();
                 ShowForm(m_oOutputMain);
+
+                // Initialize all FormSkin instances dynamically
+                foreach (Form form in Application.OpenForms)
+                {
+                    if (form is FormSkin formSkin)
+                    {
+                        InitializeForm(formSkin);
+                    }
+                }
+
                 return true;
             }
             else
@@ -7474,6 +7528,20 @@ namespace GenieClient
                 return false;
             }
         }
+
+
+        private static void InitializeForm(FormSkin form)
+        {
+            if (form != null)
+            {
+                form.LoadSkin();
+                form.AdjustRichTextBoxHeight();
+                form.SetRegion();
+                form.Invalidate(true); // Ensure the form is properly redrawn
+                form.Refresh(); // Force redraw
+            }
+        }
+
 
         public bool SaveLayout(string file = null)
         {
@@ -8157,6 +8225,8 @@ namespace GenieClient
         }
 
         private string m_sCurrentProfileName = string.Empty;
+        //commented out
+        //private UnhandledExceptionEventHandler CurrentDomain_UnhandledException;
 
         private void Command_SaveProfile()
         {

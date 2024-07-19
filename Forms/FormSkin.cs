@@ -1,6 +1,7 @@
 ﻿using System;
 using System.ComponentModel;
 using System.Drawing;
+using System.Drawing.Drawing2D;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
 using Microsoft.VisualBasic;
@@ -13,6 +14,7 @@ namespace GenieClient
         public FormSkin()
         {
             InitializeComponent();
+            this.Resize += new EventHandler(FormSkin_Resize);
         }
 
         public FormSkin(string sID, string sTitle, ref Genie.Globals oGlobal)
@@ -66,15 +68,23 @@ namespace GenieClient
 
         public void LoadSkin()
         {
-            oTopLeft = GetResourceBitmap("GenieClient.Resources.skin_topleft.bmp");
-            oTopRight = GetResourceBitmap("GenieClient.Resources.skin_topright.bmp");
-            oTop = GetResourceBitmap("GenieClient.Resources.skin_top.bmp");
-            oLeft = GetResourceBitmap("GenieClient.Resources.skin_left.bmp");
-            oRight = GetResourceBitmap("GenieClient.Resources.skin_right.bmp");
-            oBottom = GetResourceBitmap("GenieClient.Resources.skin_bottom.bmp");
-            oBottomLeft = GetResourceBitmap("GenieClient.Resources.skin_bottomleft.bmp");
-            oBottomRight = GetResourceBitmap("GenieClient.Resources.skin_bottomright.bmp");
-            Padding = new Padding(oLeft.Width, oTop.Height, oRight.Width, oBottom.Height);
+            if (!HideShowTitleBar)
+            {
+                oTopLeft = GetResourceBitmap("GenieClient.Resources.skin_topleft.bmp");
+                oTopRight = GetResourceBitmap("GenieClient.Resources.skin_topright.bmp");
+                oTop = GetResourceBitmap("GenieClient.Resources.skin_top.bmp");
+                oLeft = GetResourceBitmap("GenieClient.Resources.skin_left.bmp");
+                oRight = GetResourceBitmap("GenieClient.Resources.skin_right.bmp");
+                oBottom = GetResourceBitmap("GenieClient.Resources.skin_bottom.bmp");
+                oBottomLeft = GetResourceBitmap("GenieClient.Resources.skin_bottomleft.bmp");
+                oBottomRight = GetResourceBitmap("GenieClient.Resources.skin_bottomright.bmp");
+                Padding = new Padding(oLeft.Width, oTop.Height, oRight.Width, oBottom.Height);
+            }
+            else
+                Padding = new Padding(1, 1, 1, 1);
+            this.Invalidate();
+
+
         }
 
         private string _IfClosed = string.Empty;
@@ -341,28 +351,60 @@ namespace GenieClient
             }
         }
 
-        private void SetRegion()
+        internal void SetRegion()
         {
-            if (Information.IsNothing(oTopLeft))
-                return;
+            var oRegion = new Region(new Rectangle(0, 0, this.Width, this.Height));
 
-            // Make topleft and topright transparent 
-            var oRegion = new Region();
-            var oRegtionTemp = new Region();
-            oRegion.MakeEmpty();
-            oRegtionTemp.MakeEmpty();
-            oRegion.Union(GetRegion(oTopLeft, Color.Magenta));
-            var rc = new Rectangle(oTopLeft.Width, 0, Width - oTopLeft.Width - oTopRight.Width, oTopLeft.Height);
-            oRegion.Union(rc);
-            oRegtionTemp = GetRegion(oTopRight, Color.Magenta);
-            oRegtionTemp.Translate(Width - oTopRight.Width, 0);
-            oRegion.Union(oRegtionTemp);
-            rc = new Rectangle(0, oTopLeft.Height, Width, Height - oTopLeft.Height);
-            oRegion.Union(rc);
+            if (!HideShowTitleBar)
+            {
+                if (Information.IsNothing(oTopLeft))
+                    return;
+
+                // Make topleft and topright transparent 
+                oRegion = new Region();
+                var oRegtionTemp = new Region();
+                oRegion.MakeEmpty();
+                oRegtionTemp.MakeEmpty();
+                oRegion.Union(GetRegion(oTopLeft, Color.Magenta));
+                var rc = new Rectangle(oTopLeft.Width, 0, Width - oTopLeft.Width - oTopRight.Width, oTopLeft.Height);
+                oRegion.Union(rc);
+                oRegtionTemp = GetRegion(oTopRight, Color.Magenta);
+                oRegtionTemp.Translate(Width - oTopRight.Width, 0);
+                oRegion.Union(oRegtionTemp);
+                rc = new Rectangle(0, oTopLeft.Height, Width, Height - oTopLeft.Height);
+                oRegion.Union(rc);
+            }
+            else
+            {
+                GraphicsPath path = new GraphicsPath();
+                path.AddRectangle(new Rectangle(0, 0, Width, Height));
+                oRegion = new Region(path);
+            }
+
             Region = oRegion;
             Invalidate();
-            RichTextBoxOutput.Invalidate();
+            _RichTextBoxOutput.Invalidate();
+        }
 
+
+        internal void AdjustRichTextBoxHeight()
+        {
+            if (_RichTextBoxOutput == null || oTopLeft == null)
+            {
+                return; // Exit if either _RichTextBoxOutput or oTopLeft is not initialized
+            }
+
+            if (HideShowTitleBar)
+            {
+                _RichTextBoxOutput.Top = oTopLeft.Height; // Position below the title bar
+                _RichTextBoxOutput.Height = this.ClientSize.Height - oTopLeft.Height;
+            }
+            else
+            {
+                _RichTextBoxOutput.Top = 0; // Position at the top of the form
+                _RichTextBoxOutput.Height = this.ClientSize.Height;
+            }
+            _RichTextBoxOutput.Refresh();
         }
 
         private void GetMinMaxInfoHelper(Message m)
@@ -398,58 +440,86 @@ namespace GenieClient
 
         private void FormSkin_Load(object sender, EventArgs e)
         {
+            this._RichTextBoxOutput.Location = new Point(0, 0);
+            AdjustRichTextBoxHeight();
+            SetRegion();
+            LoadSkin();
+            PerformLayout(); // Ensure layout update
+            Refresh(); // Force redraw
+            Invalidate(true); // Invalidate entire form
         }
+
 
         private void FormSkin_Paint(object sender, PaintEventArgs e)
         {
             if (Information.IsNothing(oTopLeft))
                 return;
-            int j;
-            int i;
-            e.Graphics.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.NearestNeighbor;
-            e.Graphics.DrawImage(oTopLeft, 0, 0, oTopLeft.Width, oTopLeft.Height);
-            j = Width - oTopRight.Width + 100;
-            i = oTopLeft.Width;
-            while (i < j)
+
+            if (!HideShowTitleBar)
             {
-                e.Graphics.DrawImage(oTop, i, 0, oTop.Width, oTop.Height);
-                i += oTop.Width;
+                int j;
+                int i;
+                e.Graphics.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.NearestNeighbor;
+                e.Graphics.DrawImage(oTopLeft, 0, 0, oTopLeft.Width, oTopLeft.Height);
+                j = Width - oTopRight.Width;
+                i = oTopLeft.Width;
+                while (i < j)
+                {
+                    e.Graphics.DrawImage(oTop, i, 0, oTop.Width, oTop.Height);
+                    i += oTop.Width;
+                }
+
+                e.Graphics.DrawImage(oTopRight, Width - oTopRight.Width, 0, oTopRight.Width, oTopRight.Height);
+                j = Height - oBottomLeft.Height;
+                i = oTopLeft.Height;
+                while (i < j)
+                {
+                    e.Graphics.DrawImage(oLeft, 0, i, oLeft.Width, oLeft.Height);
+                    i += oLeft.Height;
+                }
+
+                e.Graphics.DrawImage(oBottomLeft, 0, Height - oBottomLeft.Height, oBottomLeft.Width, oBottomLeft.Height);
+                j = Width - oTopRight.Width;
+                i = oBottomLeft.Width;
+                while (i < j)
+                {
+                    e.Graphics.DrawImage(oBottom, i, Height - oBottom.Height, oBottom.Width, oBottom.Height);
+                    i += oBottom.Width;
+                }
+
+                j = Height - oBottomLeft.Height;
+                i = oTopRight.Height;
+                while (i < j)
+                {
+                    e.Graphics.DrawImage(oRight, Width - oRight.Width, i, oRight.Width, oRight.Height);
+                    i += oRight.Height;
+                }
+
+                e.Graphics.DrawImage(oBottomRight, Width - oBottomRight.Width, Height - oBottomRight.Height, oBottomRight.Width, oBottomRight.Height);
+                e.Graphics.DrawString(Text, oTitleFont, new SolidBrush(Color.White), 5, 2);
+            }
+            else
+            {
+                // Fill the entire area with the form's background color
+                using (SolidBrush brush = new SolidBrush(this.BackColor))
+                {
+                    e.Graphics.FillRectangle(brush, 0, 0, this.Width, this.Height);
+                }
+
+                // Ensure the corners are filled with background color
+                e.Graphics.FillRectangle(Brushes.Black, new Rectangle(0, 0, oTopLeft.Width, oTopLeft.Height)); // Top-Left Corner
+                e.Graphics.FillRectangle(Brushes.Black, new Rectangle(Width - oTopRight.Width, 0, oTopRight.Width, oTopRight.Height)); // Top-Right Corner
+
+                ControlPaint.DrawBorder(e.Graphics, this.ClientRectangle, Color.Gray, ButtonBorderStyle.Solid);
             }
 
-            e.Graphics.DrawImage(oTopRight, Width - oTopRight.Width, 0, oTopRight.Width, oTopRight.Height);
-            j = Height - oBottomLeft.Height + 100;
-            i = oTopLeft.Height;
-            while (i < j)
-            {
-                e.Graphics.DrawImage(oLeft, 0, i, oLeft.Width, oLeft.Height);
-                i += oLeft.Height;
-            }
-
-            e.Graphics.DrawImage(oBottomLeft, 0, Height - oBottomLeft.Height, oBottomLeft.Width, oBottomLeft.Height);
-            j = Width - oTopRight.Width + 100;
-            i = oBottomLeft.Width;
-            while (i < j)
-            {
-                e.Graphics.DrawImage(oBottom, i, Height - oBottom.Height, oBottom.Width, oBottom.Height);
-                i += oBottom.Width;
-            }
-
-            j = Height - oBottomLeft.Height + 100;
-            i = oTopRight.Height;
-            while (i < j)
-            {
-                e.Graphics.DrawImage(oRight, Width - oRight.Width, i, oRight.Width, oRight.Height);
-                i += oRight.Height;
-            }
-
-            e.Graphics.DrawImage(oBottomRight, Width - oBottomRight.Width, Height - oBottomRight.Height, oBottomRight.Width, oBottomRight.Height);
-            e.Graphics.DrawString(Text, oTitleFont, new SolidBrush(Color.White), 5, 2);
-            if (bIsBitsSet == false)
+            if (!bIsBitsSet)
             {
                 SetStyle(ControlStyles.DoubleBuffer | ControlStyles.AllPaintingInWmPaint | ControlStyles.UserPaint | ControlStyles.Opaque, true);
                 bIsBitsSet = true;
             }
         }
+
 
         private bool bIsBitsSet = false;
 
@@ -608,11 +678,11 @@ namespace GenieClient
             }
         }
 
-        private void FormSkin_Resize(object sender, EventArgs e)
+        public void FormSkin_Resize(object sender, EventArgs e)
         {
-            SetRegion();
-            //_RichTextBoxOutput.SetScrollBars();
-            if (HideShowScrollbars) // Hide/Show scrollbars
+            AdjustRichTextBoxHeight(); // Ensure RichTextBox height is adjusted first
+            SetRegion(); // Then set the region
+            if (HideShowScrollbar) // Hide/Show scrollbar
             {
                 this._RichTextBoxOutput.ScrollBars = RichTextBoxScrollBars.ForcedVertical;
             }
@@ -620,6 +690,7 @@ namespace GenieClient
             {
                 this._RichTextBoxOutput.ScrollBars = RichTextBoxScrollBars.None;
             }
+            Invalidate(true); // Ensure the form is properly redrawn
         }
 
         // Private Sub Resized()
@@ -680,17 +751,31 @@ namespace GenieClient
             }
         }
 
-        public bool HideShowScrollbars // Hide/Show scrollbars
+        public bool HideShowScrollbar // Hide/Show scrollbar
         {
             get
             {
-                return RichTextBoxOutput.HideShowScrollbars;
+                return RichTextBoxOutput.HideShowScrollbar;
             }
 
             set
             {
-                RichTextBoxOutput.HideShowScrollbars = value;
-                HideShowScrollbarsToolStripMenuItem.Checked = value;
+                RichTextBoxOutput.HideShowScrollbar = value;
+                HideShowScrollbarToolStripMenuItem.Checked = value;
+            }
+        }
+
+        public bool HideShowTitleBar // Hide/Show titlebar
+        {
+            get
+            {
+                return RichTextBoxOutput.HideShowTitleBar;
+            }
+
+            set
+            {
+                RichTextBoxOutput.HideShowTitleBar = value;
+                HideShowTitleBarToolStripMenuItem.Checked = value;
             }
         }
 
@@ -766,7 +851,7 @@ namespace GenieClient
             {
                 ((FormMain)MdiParent).ActiveFormSkin = this;
 
-                /*if (HideShowScrollbars) // Hide/Show scrollbars
+                /*if (HideShowScrollbar) // Hide/Show scrollbar
                 {
                     this._RichTextBoxOutput.ScrollBars = RichTextBoxScrollBars.ForcedVertical;
                 }
@@ -817,10 +902,10 @@ namespace GenieClient
             NameListOnly = !NameListOnly;
         }
 
-        private void HideShowScrollbarsToolStripMenuItem_Click(object sender, EventArgs e) // Hide/Show scrollbars
+        private void HideShowScrollbarToolStripMenuItem_Click(object sender, EventArgs e) // Hide/Show scrollbar
         {
-            HideShowScrollbars = !HideShowScrollbars;
-            if (HideShowScrollbars)
+            HideShowScrollbar = !HideShowScrollbar;
+            if (HideShowScrollbar)
             {
                 this._RichTextBoxOutput.ScrollBars = RichTextBoxScrollBars.ForcedVertical;
             }
@@ -828,6 +913,17 @@ namespace GenieClient
             {
                 this._RichTextBoxOutput.ScrollBars = RichTextBoxScrollBars.None;
             }
+            AdjustRichTextBoxHeight();
+            SetRegion();
+            LoadSkin();
+        }
+
+        private void HideShowTitleBarToolStripMenuItem_Click(object sender, EventArgs e) // Hide/Show titlebar
+        {
+            HideShowTitleBar = !HideShowTitleBar;
+            AdjustRichTextBoxHeight();
+            SetRegion();
+            LoadSkin();
         }
 
         private void CloseWindowToolStripMenuItem_Click(object sender, EventArgs e)
@@ -880,7 +976,7 @@ namespace GenieClient
             this._RichTextBoxOutput.ComponentRichTextBox_MouseDown(sender, e);
         }
 
-        private void _RichTextBoxOutput_MouseWheel(object sender, MouseEventArgs e) // Hide/Show scrollbars
+        private void _RichTextBoxOutput_MouseWheel(object sender, MouseEventArgs e) // Hide/Show scrollbar
         {
             this._RichTextBoxOutput.ComponentRichTextBox_MouseWheel(sender, e);
         }

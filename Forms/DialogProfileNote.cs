@@ -3,7 +3,7 @@ using System.Windows.Forms;
 
 namespace GenieClient
 {
-    public partial class DialogProfileNote
+    public partial class DialogProfileNote : Form
     {
         public DialogProfileNote()
         {
