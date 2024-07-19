@@ -135,9 +135,7 @@
     <Compile Update="Forms\ConfigPanels\UCMacros.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Update="Forms\ConfigPanels\UCWindows.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
+    <Compile Update="Forms\ConfigPanels\UCWindows.cs" />
     <Compile Update="Forms\DialogProfileNote.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -188,7 +186,7 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-	  <EmbeddedResource Include="Graphics\Taleweaver.ico" />
+    <EmbeddedResource Include="Graphics\Taleweaver.ico" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Resources\skin_bottom.bmp" />
@@ -213,15 +211,14 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-	  <PackageReference Include="Microsoft.Extensions.Hosting" Version="6.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Hosting" Version="6.0.0" />
     <PackageReference Include="Microsoft.VisualBasic" Version="10.3.0" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Remove="Forms\Components\ComponentIcons.resx" />
-    <EmbeddedResource Remove="Forms\ConfigPanels\UCVariables.resx" />
   </ItemGroup>
   <ItemGroup>
-    
+
     <None Remove="Libs\lua51.dll" />
     <None Remove="Libs\LuaInterface.dll" />
   </ItemGroup>
