@@ -1343,13 +1343,29 @@ namespace GenieClient.Genie
                             var attribute = GetAttributeData(oXmlNode, "picture");
                             if (!string.IsNullOrEmpty(attribute) && attribute != "0")
                             {
-                                attribute += ".jpg";
                                 string gamecode = "DR"; //default DR
                                 if (AccountGame.StartsWith("GS")) gamecode = "GS";
-                                if (FileHandler.FetchImage(attribute, m_oGlobals.Config.ArtDir, gamecode).Result) AddImage(Path.Combine(gamecode, attribute), "portrait");
+
+                                string thumbnailAttribute = attribute + "_t.jpg";
+                                string fullsizeAttribute = attribute + ".jpg";
+
+                                // Fetch both images
+                                bool fetchedThumbnail = FileHandler.FetchImage(thumbnailAttribute, m_oGlobals.Config.ArtDir, gamecode).Result;
+                                bool fetchedFullsize = FileHandler.FetchImage(fullsizeAttribute, m_oGlobals.Config.ArtDir, gamecode).Result;
+
+                                // If both images are fetched successfully
+                                if (fetchedThumbnail && fetchedFullsize)
+                                {
+                                    // Send fullsize image to portrait window
+                                    AddImage(Path.Combine(m_oGlobals.Config.ArtDir, gamecode, fullsizeAttribute), "portrait");
+
+                                    // Send thumbnail image to main window
+                                    AddImage(Path.Combine(m_oGlobals.Config.ArtDir, gamecode, thumbnailAttribute), "main");
+                                }
                             }
                             break;
                         }
+
                     case "streamWindow":	// Window Names
                         {
                             string argstrAttributeName5 = "id";
