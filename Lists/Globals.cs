@@ -836,6 +836,7 @@ namespace GenieClient.Genie
                 Add("out", "0", VariableType.Reserved);
                 
                 Add("roomname", "", VariableType.Reserved);
+                Add("roomuid", "", VariableType.Reserved);
                 Add("roomdesc", "", VariableType.Reserved);
                 Add("roomobjs", "", VariableType.Reserved);
                 Add("roomplayers", "", VariableType.Reserved);
