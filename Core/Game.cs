@@ -195,6 +195,7 @@ namespace GenieClient.Genie
         private bool m_bUpdatingRoom = false;
         private bool m_bUpdateRoomOnStreamEnd = false;
         private string m_sRoomTitle = string.Empty;
+        private string m_sRoomUid = string.Empty;
         // private Match m_oRegMatch;
         private Hashtable m_oIndicatorHash = new Hashtable();
         private Hashtable m_oCompassHash = new Hashtable();
@@ -1398,23 +1399,32 @@ namespace GenieClient.Genie
 
                                 case "room":
                                     {
-                                        string argstrAttributeName4 = "subtitle";
-                                        m_sRoomTitle = GetAttributeData(oXmlNode, argstrAttributeName4);
+                                        string attributeName = "subtitle";
+                                        m_sRoomTitle = GetAttributeData(oXmlNode, attributeName);
+
+
                                         if (m_sRoomTitle.StartsWith(" - "))
+                                            m_sRoomTitle = m_sRoomTitle.Substring(3).Trim();
+
+                                        if (m_sRoomTitle.EndsWith(")"))
                                         {
-                                            m_sRoomTitle = m_sRoomTitle.Substring(3);
+                                            int startIndex = m_sRoomTitle.IndexOf("(");
+                                            if (startIndex > 0)
+                                            {
+                                                m_sRoomUid = m_sRoomTitle.Substring(startIndex + 1, m_sRoomTitle.Length - startIndex - 2).Trim();
+                                                m_sRoomUid = m_sRoomUid == "**" ? "0" : m_sRoomUid;
+                                                m_sRoomTitle = m_sRoomTitle.Substring(0, startIndex).Trim();
+                                            }
                                         }
 
                                         if (m_sRoomTitle.StartsWith("["))
-                                        {
                                             m_sRoomTitle = m_sRoomTitle.Substring(1, m_sRoomTitle.Length - 2);
-                                        }
 
                                         m_sRoomTitle = m_sRoomTitle.Trim();
-                                        string argkey = "roomname";
-                                        m_oGlobals.VariableList.Add(argkey, m_sRoomTitle, Globals.Variables.VariableType.Reserved);
-                                        string argsVariable1 = "$roomname";
-                                        VariableChanged(argsVariable1);
+                                        m_oGlobals.VariableList.Add("roomname", m_sRoomTitle, Globals.Variables.VariableType.Reserved);
+                                        VariableChanged("$roomname");
+                                        m_oGlobals.VariableList.Add("roomuid", m_sRoomUid, Globals.Variables.VariableType.Reserved);
+                                        VariableChanged("$roomuid");
                                         m_bUpdatingRoom = true;
                                         break;
                                     }
