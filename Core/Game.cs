@@ -1402,7 +1402,6 @@ namespace GenieClient.Genie
                                         string attributeName = "subtitle";
                                         m_sRoomTitle = GetAttributeData(oXmlNode, attributeName);
 
-
                                         if (m_sRoomTitle.StartsWith(" - "))
                                             m_sRoomTitle = m_sRoomTitle.Substring(3).Trim();
 
